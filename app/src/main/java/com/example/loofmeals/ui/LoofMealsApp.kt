@@ -20,37 +20,54 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.loofmeals.R
 import com.example.loofmeals.data.NavigationItem
 import com.example.loofmeals.ui.layout.RootLayout
+import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoofMealsApp() {
+fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
     val items: List<NavigationItem> = navigationItems()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var selectedItemIndex by rememberSaveable {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
+
+    val goToOverview: () -> Unit = {
+        navController.popBackStack(Screens.Overview.name, inclusive = false)
+    }
+    val goToFavorite: () -> Unit = {
+        navController.navigate(Screens.Favorites.name)
+    }
+    val goToAbout: () -> Unit = {
+        navController.navigate(Screens.About.name)
+    }
+
     ModalNavigationDrawer(drawerContent = {
         ModalDrawerSheet(content = {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
-
             items.forEachIndexed { index, item ->
                 NavigationDrawerItem(
                     label = { Text(text = item.title) },
                     selected = index == selectedItemIndex,
                     onClick = {
-                        /*TODO: Navigate*/
+                        when (index) {
+                            0 -> goToOverview()
+                            1 -> goToFavorite()
+                            2 -> goToAbout()
+                        }
                         selectedItemIndex = index
                         scope.launch { drawerState.close() }
                     },
@@ -73,13 +90,14 @@ fun LoofMealsApp() {
         RootLayout(
             drawerState = drawerState,
             scope = scope,
+            navController = navController,
         )
     }
 }
 
 @Composable
 private fun navigationItems(): List<NavigationItem> {
-    val items: List<NavigationItem> = listOf(
+    return listOf(
         NavigationItem(
             title = stringResource(R.string.overview),
             selectedIcon = Icons.Filled.RestaurantMenu,
@@ -94,5 +112,4 @@ private fun navigationItems(): List<NavigationItem> {
             unselectedIcon = Icons.TwoTone.Info,
         )
     )
-    return items
 }
