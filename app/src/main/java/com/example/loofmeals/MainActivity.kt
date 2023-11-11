@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.RestaurantMenu
+import androidx.compose.material.icons.twotone.Favorite
+import androidx.compose.material.icons.twotone.Info
+import androidx.compose.material.icons.twotone.Restaurant
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,19 +30,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
 import com.example.compose.LoofTheme
+import com.example.loofmeals.data.NavigationItem
 import com.example.loofmeals.ui.layout.RootLayout
 import kotlinx.coroutines.launch
-
-// TODO: CLEANUP STRUCTURE
-data class NavigationItem(
-    val title: String,
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
-    val badgeCount: Int? = null
-)
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -47,37 +42,33 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LoofTheme {
-
-//                TODO: CLEANUP STRUCTURE
-                /*TEMP items for drawer*/
-                val items = listOf(
-                    NavigationItem(
-                        title = "Home",
-                        selectedIcon = Icons.Filled.Home,
-                        unselectedIcon = Icons.Filled.Home,
-                    ), NavigationItem(
-                        title = "Settings",
-                        selectedIcon = Icons.Filled.Settings,
-                        unselectedIcon = Icons.Filled.Settings,
-                        badgeCount = 45
-                    ), NavigationItem(
-                        title = "About",
-                        selectedIcon = Icons.Filled.Info,
-                        unselectedIcon = Icons.Filled.Info,
-                    )
-                )
-
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
+                    val items = listOf(
+                        NavigationItem(
+                            title = getString(R.string.overview),
+                            selectedIcon = Icons.Filled.RestaurantMenu,
+                            unselectedIcon = Icons.TwoTone.Restaurant,
+                        ), NavigationItem(
+                            title = getString(R.string.favorites),
+                            selectedIcon = Icons.Filled.Favorite,
+                            unselectedIcon = Icons.TwoTone.Favorite,
+                        ), NavigationItem(
+                            title = getString(R.string.about),
+                            selectedIcon = Icons.Filled.Info,
+                            unselectedIcon = Icons.TwoTone.Info,
+                        )
+                    )
                     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                     val scope = rememberCoroutineScope()
                     var selectedItemIndex by rememberSaveable {
                         mutableStateOf(0)
                     }
                     ModalNavigationDrawer(drawerContent = {
-                        ModalDrawerSheet {
-                            Spacer(modifier = Modifier.height(16.dp))
+                        ModalDrawerSheet(content = {
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
+
                             items.forEachIndexed { index, item ->
                                 NavigationDrawerItem(
                                     label = { Text(text = item.title) },
@@ -98,10 +89,10 @@ class MainActivity : ComponentActivity() {
                                             Text(text = item.badgeCount.toString())
                                         }
                                     },
-                                    modifier = Modifier.padding(horizontal = 16.dp)
+                                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.md))
                                 )
                             }
-                        }
+                        })
                     }, drawerState = drawerState) {
                         RootLayout(
                             drawerState = drawerState,
