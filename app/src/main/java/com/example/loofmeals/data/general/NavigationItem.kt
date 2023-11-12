@@ -1,4 +1,4 @@
-package com.example.loofmeals.data
+package com.example.loofmeals.data.general
 
 import androidx.compose.ui.graphics.vector.ImageVector
 data class NavigationItem(

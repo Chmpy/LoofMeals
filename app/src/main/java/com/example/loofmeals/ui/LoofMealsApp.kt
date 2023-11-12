@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.loofmeals.R
-import com.example.loofmeals.data.NavigationItem
+import com.example.loofmeals.data.general.NavigationItem
 import com.example.loofmeals.ui.layout.RootLayout
 import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.launch

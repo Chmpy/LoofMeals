@@ -78,6 +78,11 @@ dependencies {
     /* Accompanist */
     implementation("com.google.accompanist:accompanist-permissions:0.19.0")
 
+    /* API */
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
     /* To Sort */
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.0")
