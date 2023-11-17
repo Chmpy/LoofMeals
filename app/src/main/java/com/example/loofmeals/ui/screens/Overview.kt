@@ -1,6 +1,7 @@
 package com.example.loofmeals.ui.screens
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -9,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.loofmeals.R
@@ -43,7 +45,9 @@ fun RestaurantList(
 ) {
 
     val lazyListState = rememberLazyListState()
-    LazyColumn(state = lazyListState) {
+    LazyColumn(state = lazyListState, modifier = modifier.padding(
+        dimensionResource(R.dimen.md)
+    )) {
         items(restaurantOverviewState.restaurants) {
             RestaurantCard(Restaurant = it) {}
         }
