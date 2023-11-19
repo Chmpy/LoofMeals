@@ -25,7 +25,7 @@ fun RestaurantCard(modifier: Modifier = Modifier, Restaurant: Restaurant, onClic
             .fillMaxWidth()
             .padding(dimensionResource(R.dimen.xs))
     ) {
-        Text(text = Restaurant.name, modifier = Modifier.padding(dimensionResource(R.dimen.lg)))
+        Restaurant.name?.let { Text(text = it, modifier = Modifier.padding(dimensionResource(R.dimen.lg))) }
 
     }
 }
