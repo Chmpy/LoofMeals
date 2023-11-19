@@ -13,6 +13,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
 import com.example.loofmeals.R
 import com.example.loofmeals.data.RestaurantRepository
+import com.example.loofmeals.data.model.Restaurant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,6 +28,8 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
     var restaurantApiState: RestaurantApiState by mutableStateOf(RestaurantApiState.Loading)
         private set
 
+    private var originalRestaurants: List<Restaurant> = emptyList()
+
     init {
         getRestaurants()
     }
@@ -35,6 +38,7 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
         viewModelScope.launch {
             restaurantApiState = try {
                 val restaurants = restaurantRepository.getRestaurantList()
+                originalRestaurants = restaurants
                 _uiState.update {
                     it.copy(restaurants = restaurants)
                 }
@@ -43,6 +47,19 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
                 Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
                 RestaurantApiState.Error(R.string.restaurants_get_error.toString())
             }
+        }
+    }
+
+    fun filterRestaurants(query: String) {
+        val filteredRestaurants = originalRestaurants.filter { restaurant ->
+            listOf(
+                restaurant.name?.contains(query, ignoreCase = true) ?: false,
+                restaurant.mainCityName?.contains(query, ignoreCase = true) ?: false,
+                restaurant.postalCode?.contains(query, ignoreCase = true) ?: false
+            ).any { it }
+        }
+        _uiState.update {
+            it.copy(restaurants = filteredRestaurants)
         }
     }
 
