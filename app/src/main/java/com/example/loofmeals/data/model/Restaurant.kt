@@ -5,7 +5,6 @@ data class Restaurant(
     val informationGroup: String?,
     val discriminator: String?,
     val changedTime: String?,
-    val deleted: String?,
     val name: String?,
     val street: String?,
     val houseNumber: String?,
