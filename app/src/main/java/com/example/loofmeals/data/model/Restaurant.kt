@@ -1,6 +1,7 @@
 package com.example.loofmeals.data.model
 
 data class Restaurant(
+    val id: Int,
     val businessProductId: String?,
     val informationGroup: String?,
     val discriminator: String?,

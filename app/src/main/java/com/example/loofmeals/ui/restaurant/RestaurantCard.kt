@@ -17,7 +17,7 @@ import com.example.loofmeals.data.model.Restaurant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RestaurantCard(modifier: Modifier = Modifier, Restaurant: Restaurant, onClick: () -> Unit) {
+fun RestaurantCard(modifier: Modifier = Modifier, restaurant: Restaurant, onClick: () -> Unit) {
     Card(
         onClick = onClick,
         colors = cardColors(),
@@ -25,13 +25,13 @@ fun RestaurantCard(modifier: Modifier = Modifier, Restaurant: Restaurant, onClic
             .fillMaxWidth()
             .padding(dimensionResource(R.dimen.xs)),
     ) {
-        Restaurant.name?.let {
+        restaurant.name?.let {
             Text(
                 text = it,
                 modifier = Modifier.padding(dimensionResource(R.dimen.lg))
             )
         }
-        Restaurant.mainCityName?.let {
+        restaurant.mainCityName?.let {
             Text(
                 text = it,
                 modifier = Modifier.padding(dimensionResource(R.dimen.lg))

@@ -1,7 +1,7 @@
 package com.example.loofmeals.ui.layout
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -9,10 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.navArgument
 import com.example.loofmeals.ui.screens.About
+import com.example.loofmeals.ui.screens.Detail
 import com.example.loofmeals.ui.screens.Favorites
 import com.example.loofmeals.ui.screens.Overview
 import com.example.loofmeals.ui.screens.Screens
@@ -27,9 +30,11 @@ fun RootLayout(
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
 
-    val currentScreenTitle = Screens.valueOf(
-        backStackEntry?.destination?.route ?: Screens.Overview.name,
-    ).title
+    val currentScreenTitle = backStackEntry?.destination?.route?.let { route ->
+        Screens.values().find { it.route.equals(route, ignoreCase = true) }?.title
+    } ?: Screens.Overview.title
+
+
 
     Scaffold(
         topBar = { TopLoofBar(currentScreenTitle, scope, drawerState) },
@@ -40,13 +45,22 @@ fun RootLayout(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screens.Overview.name) {
-                Overview()
+                Overview(navController)
             }
             composable(Screens.Favorites.name) {
                 Favorites()
             }
             composable(Screens.About.name) {
                 About()
+            }
+            composable(
+                route = Screens.Detail.route ?: "",
+                arguments = listOf(navArgument("restaurantId") { type = NavType.IntType })
+            ) { backStackEntry ->
+                Detail(
+                    restaurantId = backStackEntry.arguments?.getInt("restaurantId") ?: 0,
+                    navController = navController
+                )
             }
         }
     }

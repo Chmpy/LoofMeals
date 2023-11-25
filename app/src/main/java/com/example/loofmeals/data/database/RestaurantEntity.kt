@@ -69,6 +69,7 @@ data class RestaurantEntity(
 
 fun Restaurant.asRestaurantEntity(): RestaurantEntity {
     return RestaurantEntity(
+        id = id,
         businessProductId = businessProductId ?: "",
         informationGroup = informationGroup ?: "",
         discriminator = discriminator ?: "",
@@ -131,6 +132,7 @@ fun Restaurant.asRestaurantEntity(): RestaurantEntity {
 
 fun RestaurantEntity.asDomainObject(): Restaurant {
     return Restaurant(
+        id = id,
         businessProductId = businessProductId,
         informationGroup = informationGroup,
         discriminator = discriminator,
@@ -194,6 +196,7 @@ fun RestaurantEntity.asDomainObject(): Restaurant {
 fun List<RestaurantEntity>.asDomainObject(): List<Restaurant> {
     return map {
         Restaurant(
+            id = it.id,
             businessProductId = it.businessProductId,
             informationGroup = it.informationGroup,
             discriminator = it.discriminator,

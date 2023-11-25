@@ -68,6 +68,7 @@ data class ApiRestaurant(
 fun List<ApiRestaurant>.asDomainObject(): List<Restaurant> {
     var domainList = this.filter { it.deleted == "0" }.map {
         Restaurant(
+            id = it.business_product_id.toInt(),
             businessProductId = it.business_product_id,
             informationGroup = it.information_group,
             discriminator = it.discriminator,

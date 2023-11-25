@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.SearchBar
 import com.example.loofmeals.ui.restaurant.RestaurantApiState
@@ -36,6 +37,7 @@ import com.example.loofmeals.ui.restaurant.RestaurantViewModel
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
 fun Overview(
+    navController: NavController,
     restaurantViewModel: RestaurantViewModel = viewModel(factory = RestaurantViewModel.Factory)
 ) {
     val restaurantOverviewState by restaurantViewModel.uiState.collectAsState()
@@ -44,7 +46,7 @@ fun Overview(
         refreshing = restaurantApiState is RestaurantApiState.Loading,
         onRefresh = { restaurantViewModel.getRestaurants() },
     )
-    
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -83,7 +85,10 @@ fun Overview(
                 }
 
                 is RestaurantApiState.Success -> {
-                    RestaurantList(restaurantOverviewState = restaurantOverviewState)
+                    RestaurantList(
+                        restaurantOverviewState = restaurantOverviewState,
+                        navController = navController
+                    )
                 }
             }
         }
@@ -99,8 +104,15 @@ fun Overview(
 
 @Composable
 fun RestaurantList(
-    modifier: Modifier = Modifier, restaurantOverviewState: RestaurantOverviewState
+    modifier: Modifier = Modifier,
+    restaurantOverviewState: RestaurantOverviewState,
+    navController: NavController
 ) {
+
+    fun goToDetail(restaurantId: Int) {
+        navController.navigate("${Screens.Detail.name}/$restaurantId")
+    }
+
     val lazyListState = rememberLazyListState()
 
     LazyColumn(
@@ -108,8 +120,11 @@ fun RestaurantList(
             horizontal = dimensionResource(R.dimen.md),
         )
     ) {
-        items(restaurantOverviewState.restaurants) {
-            RestaurantCard(Restaurant = it) {}
+        items(restaurantOverviewState.restaurants) { restaurant ->
+            RestaurantCard(
+                restaurant = restaurant,
+                onClick = { goToDetail(restaurant.id) }
+            )
         }
     }
 }

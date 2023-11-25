@@ -12,7 +12,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
 import com.example.loofmeals.data.RestaurantRepository
-import com.example.loofmeals.data.model.Restaurant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,7 +26,6 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
     var restaurantApiState: RestaurantApiState by mutableStateOf(RestaurantApiState.Loading)
         private set
 
-    private var originalRestaurants: List<Restaurant> = emptyList()
 //    private var searchJob: Job? = null
 
     init {
@@ -43,7 +41,6 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
 
                 restaurantRepository.getRestaurantList().collect { restaurants ->
                     Log.d("RestaurantViewModel", "getRestaurants: ${restaurants.size}")
-                    originalRestaurants = restaurants
                     _uiState.update {
                         it.copy(restaurants = restaurants)
                     }

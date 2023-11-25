@@ -3,6 +3,7 @@
     <string name="menu">Menu</string>
     <string name="about">Over</string>
     <string name="favorites">Favorieten</string>
+    <string name="detail">Detail</string>
     <string name="overview">Overzicht</string>
     <string name="restaurants_get_error">Restaurants konden niet worden opgehaald</string>
     <string name="search_bar_label">Naam, Gemeente, Postcode...</string>
