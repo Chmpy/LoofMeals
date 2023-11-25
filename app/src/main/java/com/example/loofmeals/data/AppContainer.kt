@@ -1,5 +1,7 @@
 package com.example.loofmeals.data
 
+import android.content.Context
+import com.example.loofmeals.data.database.RestaurantDb
 import com.example.loofmeals.network.RestaurantApiService
 import com.example.loofmeals.util.Constants
 import retrofit2.Retrofit
@@ -9,7 +11,7 @@ interface AppContainer {
     val restaurantRepository: RestaurantRepository
 }
 
-class DefaultAppContainer : AppContainer {
+class DefaultAppContainer(private val context: Context) : AppContainer {
 
     private val retrofit = Retrofit.Builder().baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create()).build()
@@ -18,8 +20,12 @@ class DefaultAppContainer : AppContainer {
         retrofit.create(RestaurantApiService::class.java)
     }
 
+    /*TODO: Change to CacheRepository*/
     override val restaurantRepository: RestaurantRepository by lazy {
-        ApiRestaurantRepository(retrofitService)
+        CachingRestaurantRepository(
+            retrofitService,
+            RestaurantDb.getInstance(context).restaurantDao()
+        )
     }
 
 }

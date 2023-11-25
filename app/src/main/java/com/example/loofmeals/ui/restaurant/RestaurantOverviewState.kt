@@ -7,8 +7,9 @@ data class RestaurantOverviewState(
 )
 
 sealed interface RestaurantApiState {
-    data class Success(val restaurants: List<Restaurant>) : RestaurantApiState
+
+    object Success : RestaurantApiState
     object Loading : RestaurantApiState
-    data class Error(val message: String) : RestaurantApiState
+    object Error : RestaurantApiState
 
 }

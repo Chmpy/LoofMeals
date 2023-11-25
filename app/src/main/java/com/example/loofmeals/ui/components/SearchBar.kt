@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -31,7 +32,7 @@ fun SearchBar(Filter: (String) -> Unit, modifier: Modifier = Modifier.fillMaxWid
     Row(
         modifier = modifier
             .padding(dimensionResource(R.dimen.lg)),
-        Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         TextField(
             value = searchQuery,
