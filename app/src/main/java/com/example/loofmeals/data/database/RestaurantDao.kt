@@ -18,4 +18,8 @@ interface RestaurantDao {
     @Query("SELECT * FROM restaurants")
     fun getAllRestaurants(): Flow<List<RestaurantEntity>>
 
+    @Query("SELECT * FROM restaurants WHERE LOWER(name) LIKE '%' || LOWER(:query) || '%' OR" +
+            " LOWER(mainCityName) LIKE '%' || LOWER(:query) || '%' OR" +
+            " LOWER(postalCode) LIKE '%' || LOWER(:query) || '%'")
+    fun getFilteredRestaurants(query: String): Flow<List<RestaurantEntity>>
 }

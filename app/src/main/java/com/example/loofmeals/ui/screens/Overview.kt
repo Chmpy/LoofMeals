@@ -44,7 +44,7 @@ fun Overview(
         refreshing = restaurantApiState is RestaurantApiState.Loading,
         onRefresh = { restaurantViewModel.getRestaurants() },
     )
-
+    
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -52,36 +52,38 @@ fun Overview(
     ) {
         Column {
             SearchBar(restaurantViewModel::filterRestaurants)
-            Row(
-                modifier = Modifier.fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                when (restaurantApiState) {
-                    is RestaurantApiState.Loading -> LinearProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(dimensionResource(R.dimen.xl))
-                            .height(dimensionResource(R.dimen.xs)),
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-
-                    is RestaurantApiState.Error -> {
-                        LazyColumn(
+            when (restaurantApiState) {
+                is RestaurantApiState.Loading -> {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        LinearProgressIndicator(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(dimensionResource(R.dimen.md)),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            item {
-                                Text(stringResource(id = R.string.restaurants_get_error))
-                            }
+                                .fillMaxWidth()
+                                .padding(dimensionResource(R.dimen.xl))
+                                .height(dimensionResource(R.dimen.xs)),
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                }
+
+                is RestaurantApiState.Error -> {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(dimensionResource(R.dimen.md)),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        item {
+                            Text(stringResource(id = R.string.restaurants_get_error))
                         }
                     }
+                }
 
-                    is RestaurantApiState.Success -> {
-                        RestaurantList(restaurantOverviewState = restaurantOverviewState)
-                    }
+                is RestaurantApiState.Success -> {
+                    RestaurantList(restaurantOverviewState = restaurantOverviewState)
                 }
             }
         }

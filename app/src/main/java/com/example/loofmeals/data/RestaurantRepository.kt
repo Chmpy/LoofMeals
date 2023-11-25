@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.onEach
 interface RestaurantRepository {
     fun getRestaurantList(): Flow<List<Restaurant>>
 
+    fun getFilteredRestaurants(query: String): Flow<List<Restaurant>>
+
     fun getRestaurantById(id: Int): Flow<Restaurant>
 
     suspend fun insertRestaurant(restaurant: Restaurant)
@@ -33,9 +35,18 @@ class CachingRestaurantRepository(
             restaurantList.asDomainObject()
         }.onEach { restaurantList ->
             if (restaurantList.isEmpty()) {
-                Log.d("CachingRestaurantRepository", "getRestaurantList: Local database is empty, refreshing from network")
+                Log.d(
+                    "CachingRestaurantRepository",
+                    "getRestaurantList: Local database is empty, refreshing from network"
+                )
                 refreshRestaurantList()
             }
+        }
+    }
+
+    override fun getFilteredRestaurants(query: String): Flow<List<Restaurant>> {
+        return restaurantDao.getFilteredRestaurants(query).map { restaurantList ->
+            restaurantList.asDomainObject()
         }
     }
 

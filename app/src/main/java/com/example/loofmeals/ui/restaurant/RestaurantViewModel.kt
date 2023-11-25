@@ -28,6 +28,7 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
         private set
 
     private var originalRestaurants: List<Restaurant> = emptyList()
+//    private var searchJob: Job? = null
 
     init {
         getRestaurants()
@@ -57,15 +58,29 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
 
 
     fun filterRestaurants(query: String) {
-        val filteredRestaurants = originalRestaurants.filter { restaurant ->
-            listOf(
-                restaurant.name?.contains(query, ignoreCase = true) ?: false,
-                restaurant.mainCityName?.contains(query, ignoreCase = true) ?: false,
-                restaurant.postalCode?.contains(query, ignoreCase = true) ?: false
-            ).any { it }
-        }
-        _uiState.update {
-            it.copy(restaurants = filteredRestaurants)
+
+        /*If we want to change the ux to change, less bouncy and less frequent updates, we can use debouncing*/
+//        // Cancel the previous debounced job
+//        searchJob?.cancel()
+//
+//        // Start a new debounced job
+//        searchJob = viewModelScope.launch {
+//            restaurantRepository.getFilteredRestaurants(query)
+//                .debounce(300) // Debounce with a delay of 300 milliseconds
+//                .collect { restaurants ->
+//                    _uiState.update {
+//                        it.copy(restaurants = restaurants)
+//                    }
+//                }
+//        }
+
+        viewModelScope.launch {
+            restaurantRepository.getFilteredRestaurants(query)
+                .collect { restaurants ->
+                    _uiState.update {
+                        it.copy(restaurants = restaurants)
+                    }
+                }
         }
     }
 
