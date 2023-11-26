@@ -23,7 +23,7 @@ fun RestaurantCard(modifier: Modifier = Modifier, restaurant: Restaurant, onClic
         colors = cardColors(),
         modifier = modifier
             .fillMaxWidth()
-            .padding(dimensionResource(R.dimen.xs)),
+            .padding(dimensionResource(R.dimen.sm)),
     ) {
         restaurant.name?.let {
             Text(
@@ -43,7 +43,7 @@ fun RestaurantCard(modifier: Modifier = Modifier, restaurant: Restaurant, onClic
 @Composable
 fun cardColors(): CardColors {
     return CardDefaults.cardColors(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
     )
 }

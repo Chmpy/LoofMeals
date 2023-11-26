@@ -1,5 +1,6 @@
 package com.example.loofmeals.ui
 
+import Screens
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,7 +33,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.loofmeals.R
 import com.example.loofmeals.data.general.NavigationItem
 import com.example.loofmeals.ui.layout.RootLayout
-import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

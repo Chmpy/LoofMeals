@@ -1,6 +1,6 @@
 package com.example.loofmeals.ui.layout
 
-import android.util.Log
+import Screens
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,11 +14,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import com.example.loofmeals.R
 import com.example.loofmeals.ui.screens.About
 import com.example.loofmeals.ui.screens.Detail
 import com.example.loofmeals.ui.screens.Favorites
 import com.example.loofmeals.ui.screens.Overview
-import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,8 +31,9 @@ fun RootLayout(
     val backStackEntry by navController.currentBackStackEntryAsState()
 
     val currentScreenTitle = backStackEntry?.destination?.route?.let { route ->
-        Screens.values().find { it.route.equals(route, ignoreCase = true) }?.title
-    } ?: Screens.Overview.title
+        val screen = Screens.getScreenByRoute(route)
+        screen?.title ?: R.string.app_name
+    } ?: R.string.app_name
 
 
 

@@ -68,7 +68,6 @@ dependencies {
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.material:material-icons-extended")
 
-
     /* Navigation */
     implementation("androidx.navigation:navigation-compose:2.7.5")
 
@@ -96,6 +95,9 @@ dependencies {
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+    /* Splash screen */
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     /* To Sort */
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")

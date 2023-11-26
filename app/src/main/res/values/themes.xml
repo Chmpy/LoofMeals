@@ -1,6 +1,14 @@
+<!-- Base application theme. -->
 <resources>
-    <!-- Base application theme. -->
-    <style name="Theme.LoofMeals" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Base application theme without the app bar. -->
+    <style name="Theme.LoofMealsNoBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
+    </style>
+
+    <!-- Splash screen theme. -->
+    <style name="Theme.LoofMeals" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/loofmeals_background</item>
+        <item name="windowSplashScreenAnimationDuration">800</item>
+        <item name="postSplashScreenTheme">@style/Theme.LoofMealsNoBar</item>
     </style>
 </resources>
