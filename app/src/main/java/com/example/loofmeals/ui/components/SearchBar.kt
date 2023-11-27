@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -25,6 +27,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.room.util.query
 import com.example.loofmeals.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,37 +42,35 @@ fun SearchBar(Filter: (String) -> Unit, modifier: Modifier = Modifier.fillMaxWid
         searchQuery = query
         Filter(query)
     }
+    TextField(
+        value = searchQuery,
+        onValueChange = { updateFilter(it) },
+        placeholder = { Text(text = stringResource(id = R.string.search_bar_label)) },
+        modifier = modifier
+            .focusable(true)
+            .fillMaxWidth(),
+        singleLine = true,
+        leadingIcon = {
+            IconButton(onClick = { updateFilter(searchQuery) }) {
+                Icon(
+                    Icons.Default.Search,
+                    contentDescription = stringResource(id = R.string.search_bar_description),
 
-    Surface(
-        modifier = modifier,
-        elevation = dimensionResource(R.dimen.md),
-        shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.surface
-    ) {
-        Row(
-            modifier = modifier
-                .padding(dimensionResource(R.dimen.lg)),
-            horizontalArrangement = Arrangement.Center,
-        ) {
-            TextField(
-                value = searchQuery,
-                onValueChange = { updateFilter(it) },
-                placeholder = { Text(text = stringResource(id = R.string.search_bar_label)) },
-                modifier = modifier
-                    .focusable(true),
-                singleLine = true,
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.Search,
-                        contentDescription = stringResource(id = R.string.search_bar_description)
                     )
-                },
-                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(onDone = {
-                    updateFilter(searchQuery); focusManager.clearFocus()
-                }),
-            )
-        }
-    }
+            }
+        },
+        trailingIcon = {
+            IconButton(onClick = { updateFilter("") }) {
+                Icon(
+                    Icons.Default.Clear,
+                    contentDescription = stringResource(id = R.string.search_bar_clear_description),
+                )
+            }
+        },
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(onDone = {
+            updateFilter(searchQuery); focusManager.clearFocus()
+        }),
+    )
 
 }
