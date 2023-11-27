@@ -25,8 +25,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import com.example.loofmeals.R
 
@@ -40,50 +42,45 @@ fun About() {
             )
     ) {
         Text(
-            text = "Welkom bij Loof Meals", style = MaterialTheme.typography.titleMedium
+            text = stringResource(R.string.welcome), style = MaterialTheme.typography.titleMedium
         )
         Spacer(
             modifier = Modifier.height(dimensionResource(R.dimen.lg))
         )
 
         Text(
-            text = "Ontdek toegankelijke restaurants in jouw buurt met mijn app, Loof Meals." + " Ik gebruik overheid data om jou te helpen bij het vinden van eetgelegenheden" + " die geschikt zijn voor mensen met mobiliteitsbeperkingen, auditievestoornissen en meer.",
-            style = MaterialTheme.typography.bodyMedium
+            text = stringResource(R.string.description),
+            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Justify
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
         Text(
-            text = "Waarom Loof Meals?", style = MaterialTheme.typography.titleMedium
+            text = stringResource(R.string.why), style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.sm)))
 
-        FeatureItem("Toegankelijkheid voor iedereen", Icons.Default.PersonAddAlt)
+        FeatureItem(stringResource(R.string.for_everyone), Icons.Default.PersonAddAlt)
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.xs)))
-        FeatureItem("Eenvoudig en doeltreffend", Icons.Default.Lightbulb)
+        FeatureItem(stringResource(R.string.simple), Icons.Default.Lightbulb)
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
         Text(
-            text = "Contacteer mij",
+            text = stringResource(R.string.contact_me),
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.md)))
 
-        ContactSection("roy.barneveld1@gmail.com", Icons.Default.Email)
+        ContactSection(stringResource(R.string.email), Icons.Default.Email)
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
-//        SocialMediaSection(
-//            Icons.Default.Person, "GitHub", "https://github.com/yourusername"
-//        )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.xs)))
-
-//        SocialMediaSection(
-//            Icons.Default.Lock, "LinkedIn", "https://www.linkedin.com/in/yourusername"
-//        )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.md)))
-
         Text(
-            text = "Bedankt voor het gebruik van Loof Meals. Eet smakelijk!",
+            text = stringResource(R.string.thank_you),
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Text(
+            text = stringResource(R.string.enjoy),
             style = MaterialTheme.typography.bodyMedium
         )
     }
@@ -126,7 +123,7 @@ fun ContactSection(email: String, icon: ImageVector) {
             onClick = {
                 val intent = Intent(Intent.ACTION_SENDTO)
                 intent.data = Uri.parse("mailto:$email")
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Onderwerp")
+                intent.putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
                 if (intent.resolveActivity(context.packageManager) != null) {
                     context.startActivity(intent)
                 }

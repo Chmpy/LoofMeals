@@ -53,7 +53,7 @@ fun Overview(
             .pullRefresh(pullRefreshState)
     ) {
         Column {
-            SearchBar(restaurantViewModel::filterRestaurants)
+            SearchBar(restaurantViewModel::filterRestaurants, modifier = Modifier.fillMaxWidth())
             when (restaurantApiState) {
                 is RestaurantApiState.Loading -> {
                     Row(

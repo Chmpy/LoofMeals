@@ -25,7 +25,7 @@ import com.example.loofmeals.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(Filter: (String) -> Unit, modifier: Modifier = Modifier.fillMaxWidth()) {
+fun SearchBar(Filter: (String) -> Unit, modifier: Modifier = Modifier) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
 

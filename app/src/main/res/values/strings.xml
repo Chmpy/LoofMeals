@@ -9,4 +9,14 @@
     <string name="search_bar_label">Naam, Gemeente, Postcode...</string>
     <string name="search_bar_description">Zoeken</string>
     <string name="search_bar_clear_description">Clear</string>
+    <string name="welcome">Welkom bij Loof Meals</string>
+    <string name="description">Ontdek toegankelijke restaurants in Vlaanderen &amp; Brussel met mijn app, Loof Meals. Ik gebruik overheid data om jou te helpen bij het vinden van eetgelegenheden die geschikt zijn voor mensen met mobiliteitsbeperkingen, auditievestoornissen en meer.</string>
+    <string name="why">Waarom Loof Meals?</string>
+    <string name="for_everyone">Toegankelijkheid voor iedereen</string>
+    <string name="simple">Eenvoudig en doeltreffend</string>
+    <string name="contact_me">Contacteer mij</string>
+    <string name="email">roy.barneveld1@gmail.com</string>
+    <string name="thank_you">Bedankt voor het gebruik van Loof Meals.</string>
+    <string name="enjoy">Geniet van je maaltijd!</string>
+    <string name="subject">Onderwerp</string>
 </resources>
