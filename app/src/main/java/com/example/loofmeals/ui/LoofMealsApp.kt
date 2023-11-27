@@ -1,6 +1,6 @@
 package com.example.loofmeals.ui
 
-import Screens
+import com.example.loofmeals.ui.screens.Screens
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding

@@ -25,13 +25,13 @@ import com.example.loofmeals.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(Filter: (String) -> Unit, modifier: Modifier = Modifier) {
+fun SearchBar(filter: (String) -> Unit, modifier: Modifier = Modifier) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
 
     fun updateFilter(query: String) {
         searchQuery = query
-        Filter(query)
+        filter(query)
     }
     TextField(
         value = searchQuery,
@@ -42,7 +42,7 @@ fun SearchBar(Filter: (String) -> Unit, modifier: Modifier = Modifier) {
             .fillMaxWidth(),
         singleLine = true,
         leadingIcon = {
-            IconButton(onClick = { updateFilter(searchQuery) }) {
+            IconButton(onClick = { updateFilter(searchQuery); focusManager.clearFocus() }) {
                 Icon(
                     Icons.Default.Search,
                     contentDescription = stringResource(id = R.string.search_bar_description),

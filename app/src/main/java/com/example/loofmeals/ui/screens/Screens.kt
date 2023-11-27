@@ -1,3 +1,5 @@
+package com.example.loofmeals.ui.screens
+
 import androidx.annotation.StringRes
 import com.example.loofmeals.R
 
