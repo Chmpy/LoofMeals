@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class RestaurantDetailViewModel(
@@ -39,15 +40,19 @@ class RestaurantDetailViewModel(
             restaurantDetailApiState = RestaurantDetailApiState.Loading
             try {
                 restaurantRepository.getRestaurantById(restaurantId).collect { restaurantDetail ->
-                    Log.d("RestaurantViewModel", "getRestaurants: ${restaurantDetail.name}")
-                    _uiState.update {
-                        it.copy(restaurant = restaurantDetail)
+                    if (isActive) {
+                        Log.d("RestaurantDetailViewModel", "getRestaurantDetail: ${restaurantDetail.name}")
+                        _uiState.update {
+                            it.copy(restaurant = restaurantDetail)
+                        }
+                        restaurantDetailApiState = RestaurantDetailApiState.Success
                     }
-                    restaurantDetailApiState = RestaurantDetailApiState.Success
                 }
             } catch (e: Exception) {
-                Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
-                restaurantDetailApiState = RestaurantDetailApiState.Error
+                if (isActive) {
+                    Log.d("RestaurantDetailViewModel", "getRestaurantDetail: ${e.message}")
+                    restaurantDetailApiState = RestaurantDetailApiState.Error
+                }
             }
         }
     }
