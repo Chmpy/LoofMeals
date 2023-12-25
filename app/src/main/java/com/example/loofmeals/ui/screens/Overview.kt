@@ -30,6 +30,7 @@ import androidx.navigation.NavController
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.SearchBar
 import com.example.loofmeals.ui.restaurant.RestaurantApiState
+import com.example.loofmeals.ui.restaurant.RestaurantApiState.*
 import com.example.loofmeals.ui.restaurant.RestaurantCard
 import com.example.loofmeals.ui.restaurant.RestaurantOverviewState
 import com.example.loofmeals.ui.restaurant.RestaurantViewModel
@@ -43,7 +44,7 @@ fun Overview(
     val restaurantOverviewState by restaurantViewModel.uiState.collectAsState()
     val restaurantApiState = restaurantViewModel.restaurantApiState
     val pullRefreshState = rememberPullRefreshState(
-        refreshing = restaurantApiState is RestaurantApiState.Loading,
+        refreshing = restaurantApiState is Loading,
         onRefresh = { restaurantViewModel.getRestaurants() },
     )
 
@@ -55,7 +56,7 @@ fun Overview(
         Column {
             SearchBar(restaurantViewModel::filterRestaurants, modifier = Modifier.fillMaxWidth())
             when (restaurantApiState) {
-                is RestaurantApiState.Loading -> {
+                is Loading -> {
                     Row(
                         modifier = Modifier.fillMaxSize(),
                         verticalAlignment = Alignment.CenterVertically,
@@ -70,7 +71,7 @@ fun Overview(
                     }
                 }
 
-                is RestaurantApiState.Error -> {
+                is Error -> {
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxSize()
@@ -84,7 +85,7 @@ fun Overview(
                     }
                 }
 
-                is RestaurantApiState.Success -> {
+                is Success -> {
                     RestaurantList(
                         restaurantOverviewState = restaurantOverviewState,
                         navController = navController
@@ -92,9 +93,9 @@ fun Overview(
                 }
             }
         }
-        if (restaurantApiState is RestaurantApiState.Success || restaurantApiState is RestaurantApiState.Error) {
+        if (restaurantApiState is Success || restaurantApiState is Error) {
             PullRefreshIndicator(
-                refreshing = restaurantApiState is RestaurantApiState.Loading,
+                refreshing = restaurantApiState is Loading,
                 state = pullRefreshState,
                 modifier = Modifier.align(Alignment.TopCenter)
             )
