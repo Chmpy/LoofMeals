@@ -67,8 +67,7 @@ fun About() {
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
         Text(
-            text = stringResource(R.string.contact_me),
-            style = MaterialTheme.typography.titleMedium
+            text = stringResource(R.string.contact_me), style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.md)))
 
@@ -76,12 +75,10 @@ fun About() {
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
         Text(
-            text = stringResource(R.string.thank_you),
-            style = MaterialTheme.typography.bodyMedium
+            text = stringResource(R.string.thank_you), style = MaterialTheme.typography.bodyMedium
         )
         Text(
-            text = stringResource(R.string.enjoy),
-            style = MaterialTheme.typography.bodyMedium
+            text = stringResource(R.string.enjoy), style = MaterialTheme.typography.bodyMedium
         )
     }
 }
@@ -105,8 +102,7 @@ fun FeatureItem(text: String, icon: ImageVector) {
 fun ContactSection(email: String, icon: ImageVector) {
     val context = LocalContext.current
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             imageVector = icon, contentDescription = null, modifier = Modifier.size(
@@ -114,21 +110,18 @@ fun ContactSection(email: String, icon: ImageVector) {
             )
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
-        ClickableText(
-            text = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                    append(email)
-                }
-            },
-            onClick = {
-                val intent = Intent(Intent.ACTION_SENDTO)
-                intent.data = Uri.parse("mailto:$email")
-                intent.putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
-                if (intent.resolveActivity(context.packageManager) != null) {
-                    context.startActivity(intent)
-                }
-            },
-            style = MaterialTheme.typography.bodyMedium
+        ClickableText(text = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                append(email)
+            }
+        }, onClick = {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.data = Uri.parse("mailto:$email")
+            intent.putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            }
+        }, style = MaterialTheme.typography.bodyMedium
         )
     }
 }

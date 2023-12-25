@@ -29,7 +29,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.SearchBar
-import com.example.loofmeals.ui.restaurant.RestaurantApiState
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.*
 import com.example.loofmeals.ui.restaurant.RestaurantCard
 import com.example.loofmeals.ui.restaurant.RestaurantOverviewState

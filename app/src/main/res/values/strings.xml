@@ -19,4 +19,15 @@
     <string name="thank_you">Bedankt voor het gebruik van Loof Meals.</string>
     <string name="enjoy">Geniet van je maaltijd!</string>
     <string name="subject">Onderwerp</string>
+    <string name="Accesibility">Toegankelijkheid</string>
+    <string name="link_to_accessibility_website">Link naar toegankelijkheids website</string>
+    <string name="no_description">Geen Beschrijving</string>
+    <string name="no_accessibility">Geen toegankelijkheids beschrijving</string>
+    <string name="no_link">Geen toegankelijkheids link</string>
+    <string name="route">Roete</string>
+    <string name="no_route">Geen interne route</string>
+    <string name="facilities">Faciliteiten</string>
+    <string name="no_facilities">Geen extra faciliteiten</string>
+    <string name="no_name">Geen naam</string>
+    <string name="no_city">Geen stads naam</string>
 </resources>
