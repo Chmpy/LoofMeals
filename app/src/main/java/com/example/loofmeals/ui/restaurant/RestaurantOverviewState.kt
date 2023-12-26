@@ -8,8 +8,8 @@ data class RestaurantOverviewState(
 
 sealed interface RestaurantApiState {
 
-    object Success : RestaurantApiState
-    object Loading : RestaurantApiState
-    object Error : RestaurantApiState
+    data object Success : RestaurantApiState
+    data object Loading : RestaurantApiState
+    data object Error : RestaurantApiState
 
 }

@@ -2,15 +2,19 @@ package com.example.loofmeals.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,7 +58,30 @@ fun Detail(
     ) {
         when (restaurantDetailApiState) {
             is Loading -> {
-                Text(text = "Loading")
+                Row(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    LinearProgressIndicator(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(dimensionResource(R.dimen.xl))
+                            .height(dimensionResource(R.dimen.xs)),
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+
+            is Error -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.md)),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = CenterHorizontally
+                ) {
+                    Text(stringResource(id = R.string.restaurant_get_error))
+                }
             }
 
             is Success -> {
@@ -62,10 +89,6 @@ fun Detail(
                     modifier = Modifier.align(Alignment.TopCenter),
                     restaurantDetailState = restaurantDetailState
                 )
-            }
-
-            is Error -> {
-                Text(text = "Error")
             }
         }
     }

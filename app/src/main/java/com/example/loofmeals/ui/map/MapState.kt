@@ -7,8 +7,8 @@ data class MapState(
 
 sealed interface MapApiState {
 
-    object Success : MapApiState
-    object Loading : MapApiState
-    object Error : MapApiState
+    data object Success : MapApiState
+    data object Loading : MapApiState
+    data object Error : MapApiState
 
 }

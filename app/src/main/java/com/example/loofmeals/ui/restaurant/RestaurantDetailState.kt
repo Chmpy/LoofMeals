@@ -8,7 +8,7 @@ data class RestaurantDetailState(
 
 sealed interface RestaurantDetailApiState {
 
-    object Success : RestaurantDetailApiState
-    object Loading : RestaurantDetailApiState
-    object Error : RestaurantDetailApiState
+    data object Success : RestaurantDetailApiState
+    data object Loading : RestaurantDetailApiState
+    data object Error : RestaurantDetailApiState
 }

@@ -48,7 +48,7 @@ fun RootLayout(
                 Overview(navController)
             }
             composable(Screens.Favorites.name) {
-                Favorites()
+                Favorites(navController)
             }
             composable(Screens.About.name) {
                 About()
