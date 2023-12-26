@@ -40,7 +40,6 @@ import com.example.loofmeals.ui.restaurant.RestaurantDetailViewModel
 @Composable
 fun Detail(
     restaurantId: Int,
-    navController: NavHostController,
     restaurantDetailViewModel: RestaurantDetailViewModel = viewModel(
         factory = RestaurantDetailViewModel.Factory(restaurantId)
     )
@@ -205,7 +204,7 @@ private fun AccessibilityLinkBody(restaurant: Restaurant) {
 private fun AccessibilityDescriptionBody(restaurant: Restaurant) {
     ///* Accessibility *///
     Text(
-        text = stringResource(R.string.Accesibility),
+        text = stringResource(R.string.accesibility),
         style = MaterialTheme.typography.titleMedium
     )
     val accessibilityDescription = restaurant.accessibilityDescription

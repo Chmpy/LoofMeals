@@ -7,7 +7,8 @@ enum class Screens(@StringRes val title: Int, val route: String? = null, val id:
     Overview(title = R.string.app_name, route = "overview"),
     Favorites(title = R.string.favorites, route = "favorites"),
     About(title = R.string.about, route = "about"),
-    Detail(title = R.string.detail, route = "Detail/{restaurantId}", id = "restaurantId");
+    Detail(title = R.string.detail, route = "Detail/{restaurantId}", id = "restaurantId"),
+    Map(title = R.string.map, route = "map");
 
     companion object {
         fun getScreenByRoute(route: String): Screens? =

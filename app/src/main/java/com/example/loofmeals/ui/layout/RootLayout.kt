@@ -18,6 +18,7 @@ import com.example.loofmeals.R
 import com.example.loofmeals.ui.screens.About
 import com.example.loofmeals.ui.screens.Detail
 import com.example.loofmeals.ui.screens.Favorites
+import com.example.loofmeals.ui.screens.Map
 import com.example.loofmeals.ui.screens.Overview
 import kotlinx.coroutines.CoroutineScope
 
@@ -34,9 +35,7 @@ fun RootLayout(
         val screen = Screens.getScreenByRoute(route)
         screen?.title ?: R.string.app_name
     } ?: R.string.app_name
-
-
-
+    
     Scaffold(
         topBar = { TopLoofBar(currentScreenTitle, scope, drawerState) },
     ) { innerPadding ->
@@ -60,8 +59,10 @@ fun RootLayout(
             ) { backStackEntry ->
                 Detail(
                     restaurantId = backStackEntry.arguments?.getInt("restaurantId") ?: 0,
-                    navController = navController
                 )
+            }
+            composable(Screens.Map.name) {
+                Map(navController)
             }
         }
     }

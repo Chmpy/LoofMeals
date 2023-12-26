@@ -19,7 +19,7 @@
     <string name="thank_you">Bedankt voor het gebruik van Loof Meals.</string>
     <string name="enjoy">Geniet van je maaltijd!</string>
     <string name="subject">Onderwerp</string>
-    <string name="Accesibility">Toegankelijkheid</string>
+    <string name="accesibility">Toegankelijkheid</string>
     <string name="link_to_accessibility_website">Link naar toegankelijkheids website</string>
     <string name="no_description">Geen Beschrijving</string>
     <string name="no_accessibility">Geen toegankelijkheids beschrijving</string>
@@ -30,4 +30,7 @@
     <string name="no_facilities">Geen extra faciliteiten</string>
     <string name="no_name">Geen naam</string>
     <string name="no_city">Geen stads naam</string>
+    <string name="map">Map</string>
+    <string name="map_no_permission">Toestemming niet verleend. Geef de locatie toestemming om door te gaan</string>
+    <string name="map_no_location">Er is geen locatietoestemming beschikbaar op dit apparaat</string>
 </resources>

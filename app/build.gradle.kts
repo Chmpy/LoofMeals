@@ -102,6 +102,9 @@ dependencies {
     /* Back gesture */
     implementation("androidx.activity:activity-ktx:1.8.2")
 
+    /* Maps */
+    implementation ("org.osmdroid:osmdroid-android:6.1.14")
+
     /* To Sort */
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.2")

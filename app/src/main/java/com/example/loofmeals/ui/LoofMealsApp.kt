@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material.icons.twotone.Info
+import androidx.compose.material.icons.twotone.Map
 import androidx.compose.material.icons.twotone.Restaurant
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -47,6 +49,7 @@ fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
         Screens.Overview.name -> 0
         Screens.Favorites.name -> 1
         Screens.About.name -> 2
+        Screens.Map.name -> 3
         else -> 0
     }
 
@@ -64,6 +67,10 @@ fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
         navController.navigate(Screens.About.name)
     }
 
+    val goToMap: () -> Unit = {
+        navController.navigate(Screens.Map.name)
+    }
+
     ModalNavigationDrawer(drawerContent = {
         ModalDrawerSheet(content = {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
@@ -76,6 +83,7 @@ fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
                             0 -> goToOverview()
                             1 -> goToFavorite()
                             2 -> goToAbout()
+                            3 -> goToMap()
                         }
                         selectedItemIndex = index
                         scope.launch { drawerState.close() }
@@ -119,6 +127,11 @@ private fun navigationItems(): List<NavigationItem> {
             title = stringResource(R.string.about),
             selectedIcon = Icons.Filled.Info,
             unselectedIcon = Icons.TwoTone.Info,
-        )
+        ),
+        NavigationItem(
+            title = stringResource(R.string.map),
+            selectedIcon = Icons.Filled.Map,
+            unselectedIcon = Icons.TwoTone.Map,
+        ),
     )
 }

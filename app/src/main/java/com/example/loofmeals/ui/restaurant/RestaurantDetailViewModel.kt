@@ -41,7 +41,10 @@ class RestaurantDetailViewModel(
             try {
                 restaurantRepository.getRestaurantById(restaurantId).collect { restaurantDetail ->
                     if (isActive) {
-                        Log.d("RestaurantDetailViewModel", "getRestaurantDetail: ${restaurantDetail.name}")
+                        Log.d(
+                            "RestaurantDetailViewModel",
+                            "getRestaurantDetail: ${restaurantDetail.name}"
+                        )
                         _uiState.update {
                             it.copy(restaurant = restaurantDetail)
                         }
