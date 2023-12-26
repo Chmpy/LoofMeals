@@ -5,15 +5,16 @@
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
+        <include
+            database="true"
+            domain="database"
+            path="com.example.loofmeals.data.database.*" />
         -->
     </cloud-backup>
-    <!--
     <device-transfer>
-        <include .../>
-        <exclude .../>
+        <include
+            database="true"
+            domain="database"
+            path="com.example.loofmeals.data.database.*" />
     </device-transfer>
-    -->
 </data-extraction-rules>

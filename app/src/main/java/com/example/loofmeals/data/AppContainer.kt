@@ -20,7 +20,6 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
         retrofit.create(RestaurantApiService::class.java)
     }
 
-    /*TODO: Change to CacheRepository*/
     override val restaurantRepository: RestaurantRepository by lazy {
         CachingRestaurantRepository(
             retrofitService,
