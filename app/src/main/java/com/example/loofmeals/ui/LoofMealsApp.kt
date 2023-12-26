@@ -1,6 +1,6 @@
 package com.example.loofmeals.ui
 
-import com.example.loofmeals.ui.screens.Screens
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.loofmeals.R
 import com.example.loofmeals.data.general.NavigationItem
 import com.example.loofmeals.ui.layout.RootLayout
+import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,8 +42,16 @@ fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
     val items: List<NavigationItem> = navigationItems()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    var selectedItemIndex by rememberSaveable {
-        mutableIntStateOf(0)
+    var selectedItemIndex by rememberSaveable { mutableIntStateOf(0) }
+    selectedItemIndex = when (navController.currentDestination?.route) {
+        Screens.Overview.name -> 0
+        Screens.Favorites.name -> 1
+        Screens.About.name -> 2
+        else -> 0
+    }
+
+    BackHandler(drawerState.isOpen) {
+        scope.launch { drawerState.close() }
     }
 
     val goToOverview: () -> Unit = {
