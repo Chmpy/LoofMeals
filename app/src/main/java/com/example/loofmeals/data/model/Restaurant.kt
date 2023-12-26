@@ -58,5 +58,6 @@ data class Restaurant(
     val visualDesc: String? = null,
     val autismDesc: String? = null,
     val garden: String? = null,
-    val spaceTableDesc: String? = null
+    val spaceTableDesc: String? = null,
+    var isFavorite: Boolean = false
 )

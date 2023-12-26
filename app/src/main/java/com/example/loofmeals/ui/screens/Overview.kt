@@ -87,7 +87,8 @@ fun Overview(
                 is Success -> {
                     RestaurantList(
                         restaurantOverviewState = restaurantOverviewState,
-                        navController = navController
+                        navController = navController,
+                        restaurantViewModel = restaurantViewModel
                     )
                 }
             }
@@ -106,7 +107,8 @@ fun Overview(
 fun RestaurantList(
     modifier: Modifier = Modifier,
     restaurantOverviewState: RestaurantOverviewState,
-    navController: NavController
+    navController: NavController,
+    restaurantViewModel: RestaurantViewModel
 ) {
 
     fun goToDetail(restaurantId: Int) {
@@ -123,7 +125,8 @@ fun RestaurantList(
         items(restaurantOverviewState.restaurants) { restaurant ->
             RestaurantCard(
                 restaurant = restaurant,
-                onClick = { goToDetail(restaurant.id) }
+                onClick = { goToDetail(restaurant.id) },
+                onIconClick = { restaurantViewModel.updateFavorite(restaurant) }
             )
         }
     }

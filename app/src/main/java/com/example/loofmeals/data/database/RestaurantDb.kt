@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.loofmeals.util.Constants
 
-@Database(entities = [RestaurantEntity::class], version = 1, exportSchema = false)
+@Database(entities = [RestaurantEntity::class], version = 2, exportSchema = false)
 abstract class RestaurantDb : RoomDatabase() {
 
     abstract fun restaurantDao(): RestaurantDao

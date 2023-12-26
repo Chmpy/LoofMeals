@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -105,7 +106,6 @@ fun RestaurantDetailHeader(
         horizontalAlignment = CenterHorizontally,
     ) {
         Text(
-//            text = restaurant.name ?: "No Name",
             if (restaurant.name.isNullOrEmpty()) stringResource(R.string.no_name) else restaurant.name,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center

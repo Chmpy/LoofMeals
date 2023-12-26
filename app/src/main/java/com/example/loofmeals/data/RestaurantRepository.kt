@@ -18,6 +18,10 @@ interface RestaurantRepository {
 
     fun getRestaurantById(id: Int): Flow<Restaurant>
 
+    fun getFavoriteRestaurants(): Flow<List<Restaurant>>
+
+    suspend fun updateRestaurant(restaurant: Restaurant)
+
     suspend fun insertRestaurant(restaurant: Restaurant)
 
     suspend fun refreshRestaurantList()
@@ -52,6 +56,16 @@ class CachingRestaurantRepository(
 
     override fun getRestaurantById(id: Int): Flow<Restaurant> {
         return restaurantDao.getRestaurantById(id).map { it.asDomainObject() }
+    }
+
+    override fun getFavoriteRestaurants(): Flow<List<Restaurant>> {
+        return restaurantDao.getFavoriteRestaurants().map { restaurantList ->
+            restaurantList.asDomainObject()
+        }
+    }
+
+    override suspend fun updateRestaurant(restaurant: Restaurant) {
+        restaurantDao.updateRestaurant(restaurant.asRestaurantEntity())
     }
 
     override suspend fun insertRestaurant(restaurant: Restaurant) {

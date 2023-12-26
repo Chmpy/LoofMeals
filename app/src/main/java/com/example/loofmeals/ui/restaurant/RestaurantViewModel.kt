@@ -12,6 +12,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
 import com.example.loofmeals.data.RestaurantRepository
+import com.example.loofmeals.data.model.Restaurant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -78,6 +79,22 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
                         it.copy(restaurants = restaurants)
                     }
                 }
+        }
+    }
+
+    fun updateFavorite(restaurant: Restaurant) {
+        viewModelScope.launch {
+            restaurant.isFavorite = !restaurant.isFavorite
+            restaurantRepository.updateRestaurant(restaurant)
+            _uiState.update {
+                it.copy(restaurants = it.restaurants.map { currentRestaurant ->
+                    if (currentRestaurant.id == restaurant.id) {
+                        currentRestaurant.copy(isFavorite = !currentRestaurant.isFavorite)
+                    } else {
+                        currentRestaurant
+                    }
+                })
+            }
         }
     }
 

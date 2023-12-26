@@ -65,6 +65,7 @@ data class RestaurantEntity(
     val autismDesc: String = "",
     val garden: String = "",
     val spaceTableDesc: String = "",
+    val isFavorite: Boolean = false
 )
 
 fun Restaurant.asRestaurantEntity(): RestaurantEntity {
@@ -126,7 +127,8 @@ fun Restaurant.asRestaurantEntity(): RestaurantEntity {
         visualDesc = visualDesc ?: "",
         autismDesc = autismDesc ?: "",
         garden = garden ?: "",
-        spaceTableDesc = spaceTableDesc ?: ""
+        spaceTableDesc = spaceTableDesc ?: "",
+        isFavorite = isFavorite
     )
 }
 
@@ -189,7 +191,8 @@ fun RestaurantEntity.asDomainObject(): Restaurant {
         visualDesc = visualDesc,
         autismDesc = autismDesc,
         garden = garden,
-        spaceTableDesc = spaceTableDesc
+        spaceTableDesc = spaceTableDesc,
+        isFavorite = isFavorite
     )
 }
 
@@ -253,7 +256,8 @@ fun List<RestaurantEntity>.asDomainObject(): List<Restaurant> {
             visualDesc = it.visualDesc,
             autismDesc = it.autismDesc,
             garden = it.garden,
-            spaceTableDesc = it.spaceTableDesc
+            spaceTableDesc = it.spaceTableDesc,
+            isFavorite = it.isFavorite
         )
     }
 }
