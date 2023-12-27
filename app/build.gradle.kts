@@ -104,6 +104,7 @@ dependencies {
 
     /* Maps */
     implementation ("org.osmdroid:osmdroid-android:6.1.14")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
 
     /* To Sort */
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")

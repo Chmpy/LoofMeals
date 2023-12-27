@@ -2,6 +2,7 @@ package com.example.loofmeals.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +12,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Web
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,8 +51,7 @@ import com.example.loofmeals.ui.restaurant.RestaurantDetailViewModel
 
 @Composable
 fun Detail(
-    restaurantId: Int,
-    restaurantDetailViewModel: RestaurantDetailViewModel = viewModel(
+    restaurantId: Int, restaurantDetailViewModel: RestaurantDetailViewModel = viewModel(
         factory = RestaurantDetailViewModel.Factory(restaurantId)
     )
 ) {
@@ -108,20 +116,18 @@ fun RestaurantDetail(
             val restaurant = restaurantDetailState.restaurant
             RestaurantDetailHeader(restaurant = restaurant)
             RestaurantDetailBody(restaurant = restaurant)
+            RestaurantDetailFooter(restaurant = restaurant)
         }
     }
 }
 
 @Composable
-fun RestaurantDetailHeader(
-    modifier: Modifier = Modifier,
-    restaurant: Restaurant,
-) {
+fun RestaurantDetailHeader(modifier: Modifier = Modifier, restaurant: Restaurant) {
     Column(
         modifier = modifier
             .padding(
                 top = dimensionResource(id = R.dimen.lg),
-                bottom = dimensionResource(id = R.dimen.lg)
+                bottom = dimensionResource(id = R.dimen.sm)
             )
             .fillMaxWidth(),
         horizontalAlignment = CenterHorizontally,
@@ -131,34 +137,22 @@ fun RestaurantDetailHeader(
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center
         )
-        Text(
-            if (restaurant.cityName.isNullOrEmpty()) stringResource(R.string.no_city) else restaurant.cityName,
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center
-        )
-
     }
 }
 
 @Composable
-fun RestaurantDetailBody(
-    modifier: Modifier = Modifier,
-    restaurant: Restaurant,
-) {
+fun RestaurantDetailBody(modifier: Modifier = Modifier, restaurant: Restaurant) {
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
         DescriptionBody(restaurant = restaurant)
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
         AccessibilityBody(restaurant = restaurant)
-        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
     }
 }
 
 @Composable
-fun DescriptionBody(
-    restaurant: Restaurant,
-) {
+fun DescriptionBody(restaurant: Restaurant) {
     Column {
         ///* Description *///
         Text(
@@ -169,9 +163,7 @@ fun DescriptionBody(
 }
 
 @Composable
-fun AccessibilityBody(
-    restaurant: Restaurant,
-) {
+fun AccessibilityBody(restaurant: Restaurant) {
     Column {
         AccessibilityDescriptionBody(restaurant)
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
@@ -183,18 +175,70 @@ fun AccessibilityBody(
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
 
         AccessibilityLinkBody(restaurant)
-        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.lg)))
     }
 }
 
 @Composable
+private fun AccessibilityDescriptionBody(restaurant: Restaurant) {
+    ///* Accessibility *///
+    Column(
+        modifier = Modifier
+            .padding(
+                top = dimensionResource(id = R.dimen.lg),
+                bottom = dimensionResource(id = R.dimen.sm)
+            )
+            .fillMaxWidth(),
+        horizontalAlignment = CenterHorizontally,
+    ) {
+        Text(
+            text = stringResource(R.string.accesibility),
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center
+        )
+    }
+    Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
+    val accessibilityDescription = restaurant.accessibilityDescription
+    Text(
+        text = if (accessibilityDescription.isNullOrEmpty()) stringResource(R.string.no_accessibility) else accessibilityDescription,
+        style = MaterialTheme.typography.bodyMedium
+    )
+}
+
+@Composable
+private fun RouteBody(restaurant: Restaurant) {
+    ///* Route *///
+    Text(
+        text = stringResource(R.string.route), style = MaterialTheme.typography.titleMedium
+    )
+    val route = restaurant.routeAndLevels
+    Text(
+        text = if (route.isNullOrEmpty()) stringResource(R.string.no_route) else route,
+        style = MaterialTheme.typography.bodyMedium
+    )
+}
+
+@Composable
+private fun FacilityBody(restaurant: Restaurant) {
+    ///* Facilities *///
+    Text(
+        text = stringResource(R.string.facilities), style = MaterialTheme.typography.titleMedium
+    )
+    val facilities = restaurant.extraFacilities
+    Text(
+        text = if (facilities.isNullOrEmpty()) stringResource(R.string.no_facilities) else facilities,
+        style = MaterialTheme.typography.bodyMedium
+    )
+}
+
+@Composable
 private fun AccessibilityLinkBody(restaurant: Restaurant) {
-    val context = LocalContext.current
     ///* Link to accessibility website *///
     Text(
         text = stringResource(R.string.link_to_accessibility_website),
         style = MaterialTheme.typography.titleSmall
     )
+    val context = LocalContext.current
     val linkToAccessibilityWebsite = restaurant.linkToAccessibilityWebsite
     val urlPattern = Regex(pattern = "^(http|https)://.*$")
     val validUrl = urlPattern.matches(linkToAccessibilityWebsite ?: "")
@@ -222,43 +266,173 @@ private fun AccessibilityLinkBody(restaurant: Restaurant) {
 }
 
 @Composable
-private fun AccessibilityDescriptionBody(restaurant: Restaurant) {
-    ///* Accessibility *///
+fun RestaurantDetailFooter(modifier: Modifier = Modifier, restaurant: Restaurant) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+    ) {
+
+        ContactBody()
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.xs)))
+
+        AddressBody(restaurant)
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
+
+        PhoneBody(restaurant)
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
+
+        EmailBody(restaurant)
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.sm)))
+
+        WebsiteBody(restaurant)
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.lg)))
+    }
+}
+
+@Composable
+private fun ContactBody() {
+    ///* Contact *///
     Text(
-        text = stringResource(R.string.accesibility),
-        style = MaterialTheme.typography.titleMedium
-    )
-    val accessibilityDescription = restaurant.accessibilityDescription
-    Text(
-        text = if (accessibilityDescription.isNullOrEmpty()) stringResource(R.string.no_accessibility) else accessibilityDescription,
-        style = MaterialTheme.typography.bodyMedium
+        text = stringResource(R.string.contact), style = MaterialTheme.typography.titleMedium
     )
 }
 
 @Composable
-private fun FacilityBody(restaurant: Restaurant) {
-    ///* Facilities *///
-    Text(
-        text = stringResource(R.string.facilities),
-        style = MaterialTheme.typography.titleMedium
-    )
-    val facilities = restaurant.extraFacilities
-    Text(
-        text = if (facilities.isNullOrEmpty()) stringResource(R.string.no_facilities) else facilities,
-        style = MaterialTheme.typography.bodyMedium
-    )
+private fun AddressBody(restaurant: Restaurant) {
+    ///* Address *///
+    val address =
+        restaurant.street + " " + restaurant.houseNumber + ", " + restaurant.postalCode + ", " + restaurant.cityName
+    Row(
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Home, contentDescription = null, modifier = Modifier.size(
+                dimensionResource(R.dimen.xl)
+            )
+        )
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
+        val context = LocalContext.current
+        ClickableText(text = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                append(address)
+            }
+        }, onClick = {
+            val long = restaurant.long
+            val lat = restaurant.lat
+            val gmmIntentUri = Uri.parse("google.navigation:q=$lat,$long")
+            val intent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            intent.setPackage("com.google.android.apps.maps")
+            Log.d(
+                "Detail",
+                "Opening google maps on: http://maps.google.com/maps?daddr=$lat,$long"
+            )
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            }
+        }, style = MaterialTheme.typography.bodyMedium
+        )
+    }
 }
 
 @Composable
-private fun RouteBody(restaurant: Restaurant) {
-    ///* Route *///
-    Text(
-        text = stringResource(R.string.route),
-        style = MaterialTheme.typography.titleMedium
-    )
-    val route = restaurant.routeAndLevels
-    Text(
-        text = if (route.isNullOrEmpty()) stringResource(R.string.no_route) else route,
-        style = MaterialTheme.typography.bodyMedium
-    )
+private fun PhoneBody(restaurant: Restaurant) {
+    ///* Phone *///
+    Row(
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Phone, contentDescription = null, modifier = Modifier.size(
+                dimensionResource(R.dimen.xl)
+            )
+        )
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
+//        Text(
+//            text = if (restaurant.phone1.isNullOrEmpty()) stringResource(R.string.no_phone) else restaurant.phone1,
+//            style = MaterialTheme.typography.bodyMedium
+//        )
+        val context = LocalContext.current
+        ClickableText(text = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                append(restaurant.phone1)
+            }
+        }, onClick = {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${restaurant.phone1}")
+            Log.d("Detail", "Opening phone dialer on: " + "tel:${restaurant.phone1}")
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            }
+        }, style = MaterialTheme.typography.bodyMedium
+        )
+    }
+}
+
+@Composable
+private fun EmailBody(restaurant: Restaurant) {
+    ///* Email *///
+    Row(
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Email, contentDescription = null, modifier = Modifier.size(
+                dimensionResource(R.dimen.xl)
+            )
+        )
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
+        val context = LocalContext.current
+        ClickableText(text = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                append(restaurant.email)
+            }
+        }, onClick = {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.data = Uri.parse("mailto:${restaurant.email}")
+            intent.putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
+            Log.d("Detail", "Opening email on: " + "mailto:${restaurant.email}")
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            }
+        }, style = MaterialTheme.typography.bodyMedium
+        )
+    }
+}
+
+@Composable
+private fun WebsiteBody(restaurant: Restaurant) {
+    ///* Website *///
+    Row(
+        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Web, contentDescription = null, modifier = Modifier.size(
+                dimensionResource(R.dimen.xl)
+            )
+        )
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
+        val context = LocalContext.current
+        val website = restaurant.website
+        val urlPattern = Regex(pattern = "^(http|https)://.*$")
+        val validUrl = urlPattern.matches(website ?: "")
+        ClickableText(text = buildAnnotatedString {
+            withStyle(
+                if (validUrl) SpanStyle(
+                    textDecoration = TextDecoration.Underline,
+                    color = MaterialTheme.colorScheme.primary
+                ) else SpanStyle(
+                    textDecoration = TextDecoration.Underline,
+                    color = MaterialTheme.colorScheme.error
+                )
+            ) {
+                append(
+                    if (website.isNullOrEmpty()) stringResource(R.string.no_website) else website
+                )
+            }
+        }, onClick = {
+            if (validUrl) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(website))
+                Log.d("Detail", "Opening website on: $website")
+                context.startActivity(intent)
+            }
+        }, style = MaterialTheme.typography.bodyMedium
+        )
+    }
 }

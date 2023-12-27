@@ -36,4 +36,9 @@
     <string name="map_no_location">Er is geen locatietoestemming beschikbaar op dit apparaat</string>
     <string name="favorites_get_error">Favorieten konden niet worden opgehaald</string>
     <string name="favorites_empty">Je favorietenlijst is zo leeg als een bord na een smakelijk diner! Vul het met wat restaurants uit het</string>
+    <string name="contact">Contact</string>
+    <string name="no_address">Geen address</string>
+    <string name="no_phone">Geen telefoonnummer</string>
+    <string name="no_email">Geen e-mailadres</string>
+    <string name="no_website">Geen website</string>
 </resources>
