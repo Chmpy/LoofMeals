@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,17 +21,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
-import com.example.loofmeals.ui.favorite.FavoriteApiState
-import com.example.loofmeals.ui.favorite.FavoriteApiState.*
+import com.example.loofmeals.ui.favorite.FavoriteApiState.Error
+import com.example.loofmeals.ui.favorite.FavoriteApiState.Loading
+import com.example.loofmeals.ui.favorite.FavoriteApiState.Success
 import com.example.loofmeals.ui.favorite.FavoriteState
 import com.example.loofmeals.ui.favorite.FavoriteViewModel
 import com.example.loofmeals.ui.restaurant.RestaurantCard
-import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState
-import com.example.loofmeals.ui.restaurant.RestaurantOverviewState
-import com.example.loofmeals.ui.restaurant.RestaurantViewModel
 
 @Composable
 fun Favorites(
@@ -99,17 +101,47 @@ fun FavoritesList(
 
     val lazyListState = rememberLazyListState()
 
+    if (favoriteState.restaurants.isEmpty()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(dimensionResource(id = R.dimen.xl)),
+            contentAlignment = Alignment.Center
+        ) {
+
+//            Text(
+//                textAlign = TextAlign.Justify,
+//                text = stringResource(id = R.string.favorites_empty),
+//            )
+            val offsetLength = stringResource(id = R.string.favorites_empty).length
+            ClickableText(text = buildAnnotatedString {
+                withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground)) {
+                    append(stringResource(id = R.string.favorites_empty))
+                }
+                withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                    append(" " + "overzicht")
+                }
+            }, onClick = { offset ->
+                //Only navigate when the user clicks on the word "overzicht"
+                if (offset >= offsetLength) {
+                    navController.navigate(Screens.Overview.name)
+                }
+            },
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+        return
+    }
+
     LazyColumn(
         state = lazyListState, modifier = modifier.padding(
             horizontal = dimensionResource(R.dimen.md),
         )
     ) {
         items(favoriteState.restaurants) { restaurant ->
-            RestaurantCard(
-                restaurant = restaurant,
+            RestaurantCard(restaurant = restaurant,
                 onClick = { goToDetail(restaurant.id) },
-                onIconClick = { favoriteViewModel.updateFavorite(restaurant) }
-            )
+                onIconClick = { favoriteViewModel.updateFavorite(restaurant) })
         }
     }
 }
