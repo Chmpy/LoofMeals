@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -39,7 +40,7 @@ fun SearchBar(filter: (String) -> Unit, modifier: Modifier = Modifier) {
         placeholder = { Text(text = stringResource(id = R.string.search_bar_label)) },
         modifier = modifier
             .focusable(true)
-            .fillMaxWidth(),
+            .fillMaxWidth().alpha(0.8f),
         singleLine = true,
         leadingIcon = {
             IconButton(onClick = { updateFilter(searchQuery); focusManager.clearFocus() }) {

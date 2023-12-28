@@ -2,6 +2,8 @@ package com.example.loofmeals.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,63 +25,86 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import com.example.loofmeals.R
+import com.example.loofmeals.ui.components.BackgroundSurface
 
 @Composable
 fun About() {
-    Column(
+    Box(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                dimensionResource(R.dimen.xl),
-            )
+            .fillMaxSize(),
+        Alignment.Center
     ) {
-        Text(
-            text = stringResource(R.string.welcome), style = MaterialTheme.typography.titleMedium
+        Image(
+            painter = painterResource(id = R.drawable.background3),
+            contentDescription = "background3",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.matchParentSize()
         )
-        Spacer(
-            modifier = Modifier.height(dimensionResource(R.dimen.lg))
-        )
+        Box(modifier = Modifier.padding(dimensionResource(R.dimen.lg))) {
+            BackgroundSurface {
+                Column(
+                    modifier = Modifier
+                        .padding(
+                            dimensionResource(R.dimen.xl),
+                        )
+                ) {
+                    Text(
+                        text = stringResource(R.string.welcome),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Spacer(
+                        modifier = Modifier.height(dimensionResource(R.dimen.lg))
+                    )
 
-        Text(
-            text = stringResource(R.string.description),
-            style = MaterialTheme.typography.bodyMedium,
-            textAlign = TextAlign.Justify
-        )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
+                    Text(
+                        text = stringResource(R.string.description),
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Justify
+                    )
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
-        Text(
-            text = stringResource(R.string.why), style = MaterialTheme.typography.titleMedium
-        )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.sm)))
+                    Text(
+                        text = stringResource(R.string.why),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.sm)))
 
-        FeatureItem(stringResource(R.string.for_everyone), Icons.Default.PersonAddAlt)
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.xs)))
-        FeatureItem(stringResource(R.string.simple), Icons.Default.Lightbulb)
+                    FeatureItem(stringResource(R.string.for_everyone), Icons.Default.PersonAddAlt)
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.xs)))
+                    FeatureItem(stringResource(R.string.simple), Icons.Default.Lightbulb)
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
-        Text(
-            text = stringResource(R.string.contact_me), style = MaterialTheme.typography.titleMedium
-        )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.md)))
+                    Text(
+                        text = stringResource(R.string.contact_me),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.md)))
 
-        ContactSection(stringResource(R.string.email), Icons.Default.Email)
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
+                    ContactSection(stringResource(R.string.email), Icons.Default.Email)
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
 
-        Text(
-            text = stringResource(R.string.thank_you), style = MaterialTheme.typography.bodyMedium
-        )
-        Text(
-            text = stringResource(R.string.enjoy), style = MaterialTheme.typography.bodyMedium
-        )
+                    Text(
+                        text = stringResource(R.string.thank_you),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        text = stringResource(R.string.enjoy),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+        }
     }
 }
 

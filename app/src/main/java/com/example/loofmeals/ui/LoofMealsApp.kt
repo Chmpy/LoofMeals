@@ -28,6 +28,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
@@ -72,7 +73,7 @@ fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
     }
 
     ModalNavigationDrawer(drawerContent = {
-        ModalDrawerSheet(content = {
+        ModalDrawerSheet(modifier = Modifier.alpha(0.99f), content = {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.lg)))
             items.forEachIndexed { index, item ->
                 NavigationDrawerItem(

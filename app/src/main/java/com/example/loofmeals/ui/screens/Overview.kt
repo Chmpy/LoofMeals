@@ -1,5 +1,6 @@
 package com.example.loofmeals.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,13 +24,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.SearchBar
-import com.example.loofmeals.ui.restaurant.RestaurantApiState.*
+import com.example.loofmeals.ui.restaurant.RestaurantApiState.Error
+import com.example.loofmeals.ui.restaurant.RestaurantApiState.Loading
+import com.example.loofmeals.ui.restaurant.RestaurantApiState.Success
 import com.example.loofmeals.ui.restaurant.RestaurantCard
 import com.example.loofmeals.ui.restaurant.RestaurantOverviewState
 import com.example.loofmeals.ui.restaurant.RestaurantViewModel
@@ -52,6 +57,12 @@ fun Overview(
             .fillMaxSize()
             .pullRefresh(pullRefreshState)
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.background1),
+            contentDescription = "background1",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.matchParentSize()
+        )
         Column {
             SearchBar(restaurantViewModel::filterRestaurants, modifier = Modifier.fillMaxWidth())
             when (restaurantApiState) {

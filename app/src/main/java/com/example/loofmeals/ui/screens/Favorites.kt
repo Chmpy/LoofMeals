@@ -1,5 +1,6 @@
 package com.example.loofmeals.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -19,7 +20,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -27,6 +30,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
+import com.example.loofmeals.ui.components.BackgroundSurface
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Error
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Loading
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Success
@@ -45,6 +49,12 @@ fun Favorites(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.background4),
+            contentDescription = "background4",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.matchParentSize()
+        )
         when (favoriteApiState) {
             is Loading -> {
                 Row(
@@ -67,7 +77,7 @@ fun Favorites(
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.md)),
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     item {
                         Text(stringResource(id = R.string.favorites_get_error))
@@ -102,33 +112,32 @@ fun FavoritesList(
     val lazyListState = rememberLazyListState()
 
     if (favoriteState.restaurants.isEmpty()) {
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(dimensionResource(id = R.dimen.xl)),
             contentAlignment = Alignment.Center
         ) {
-
-//            Text(
-//                textAlign = TextAlign.Justify,
-//                text = stringResource(id = R.string.favorites_empty),
-//            )
-            val offsetLength = stringResource(id = R.string.favorites_empty).length
-            ClickableText(text = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground)) {
-                    append(stringResource(id = R.string.favorites_empty))
-                }
-                withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                    append(" " + "overzicht")
-                }
-            }, onClick = { offset ->
-                //Only navigate when the user clicks on the word "overzicht"
-                if (offset >= offsetLength) {
-                    navController.navigate(Screens.Overview.name)
-                }
-            },
-                style = MaterialTheme.typography.bodyLarge
-            )
+            BackgroundSurface {
+                val offsetLength = stringResource(id = R.string.favorites_empty).length
+                ClickableText(text = buildAnnotatedString {
+                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground)) {
+                        append(stringResource(id = R.string.favorites_empty))
+                    }
+                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                        append(" " + "overzicht")
+                    }
+                }, onClick = { offset ->
+                    //Only navigate when the user clicks on the word "overzicht"
+                    if (offset >= offsetLength) {
+                        navController.navigate(Screens.Overview.name)
+                    }
+                },
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),
+                )
+            }
         }
         return
     }

@@ -3,6 +3,7 @@ package com.example.loofmeals.ui.screens
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,8 +33,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -43,6 +46,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.loofmeals.R
 import com.example.loofmeals.data.model.Restaurant
+import com.example.loofmeals.ui.components.BackgroundSurface
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Error
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Loading
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Success
@@ -62,6 +66,12 @@ fun Detail(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.background2),
+            contentDescription = "background2",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.matchParentSize()
+        )
         when (restaurantDetailApiState) {
             is Loading -> {
                 Row(
@@ -106,17 +116,19 @@ fun RestaurantDetail(
     restaurantDetailState: RestaurantDetailState,
 ) {
     val lazyListState = rememberLazyListState()
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = dimensionResource(id = R.dimen.xl)),
-        state = lazyListState,
-    ) {
-        item {
-            val restaurant = restaurantDetailState.restaurant
-            RestaurantDetailHeader(restaurant = restaurant)
-            RestaurantDetailBody(restaurant = restaurant)
-            RestaurantDetailFooter(restaurant = restaurant)
+    BackgroundSurface {
+        LazyColumn(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(horizontal = dimensionResource(id = R.dimen.xl)),
+            state = lazyListState,
+        ) {
+            item {
+                val restaurant = restaurantDetailState.restaurant
+                RestaurantDetailHeader(restaurant = restaurant)
+                RestaurantDetailBody(restaurant = restaurant)
+                RestaurantDetailFooter(restaurant = restaurant)
+            }
         }
     }
 }
