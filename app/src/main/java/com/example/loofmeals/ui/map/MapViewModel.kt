@@ -17,6 +17,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for the Map screen.
+ *
+ * This ViewModel fetches the restaurants from the repository and updates the UI state.
+ * If the API call is successful,
+ * it updates the UI state with the fetched restaurants and sets the API call state to Success.
+ * If the API call fails, it sets the API call state to Error.
+ *
+ * @property restaurantRepository The repository to fetch the restaurants from.
+ */
 class MapViewModel(
     private val restaurantRepository: RestaurantRepository
 ) : ViewModel() {
@@ -24,42 +34,58 @@ class MapViewModel(
     private val _uiState = MutableStateFlow(MapState())
     val uiState: StateFlow<MapState> = _uiState.asStateFlow()
 
+    // The state of the API call to fetch the restaurants.
+    // This is a mutable state that is updated every time the API call state changes.
     var mapApiState: MapApiState by mutableStateOf(MapApiState.Loading)
-        private set
 
+    // Fetch the restaurants when the ViewModel is initialized.
     init {
         getRestaurants()
     }
 
-    fun getRestaurants() {
-    viewModelScope.launch {
-        mapApiState = MapApiState.Loading
-        try {
-            restaurantRepository.getRestaurantList().collect { restaurants ->
-                Log.d("MapViewModel", "getRestaurants: ${restaurants.size}")
-                _uiState.update {
-                    it.copy(
-                        markers = restaurants.mapNotNull { restaurant ->
-                            if (restaurant.lat != "" && restaurant.long != "")
-                                RestaurantMarker(
-                                    lat = restaurant.lat!!.toDouble(),
-                                    long = restaurant.long!!.toDouble(),
-                                    title = restaurant.name!!,
-                                    id = restaurant.id!!
-                                )
-                            else null
-                        }
-                    )
+    /**
+     * Fetch the restaurants from the repository.
+     *
+     * This function fetches the restaurants from the repository and updates the UI state.
+     * If the API call is successful,
+     * it updates the UI state with the fetched restaurants and sets the API call state to Success.
+     * If the API call fails, it sets the API call state to Error.
+     */
+    private fun getRestaurants() {
+        viewModelScope.launch {
+            mapApiState = MapApiState.Loading
+            try {
+                restaurantRepository.getRestaurantList().collect { restaurants ->
+                    Log.d("MapViewModel", "getRestaurants: ${restaurants.size}")
+                    _uiState.update {
+                        it.copy(
+                            markers = restaurants.mapNotNull { restaurant ->
+                                if (restaurant.lat != "" && restaurant.long != "")
+                                    RestaurantMarker(
+                                        lat = restaurant.lat!!.toDouble(),
+                                        long = restaurant.long!!.toDouble(),
+                                        title = restaurant.name!!,
+                                        id = restaurant.id
+                                    )
+                                else null
+                            }
+                        )
+                    }
+                    mapApiState = MapApiState.Success
                 }
-                mapApiState = MapApiState.Success
+            } catch (e: Exception) {
+                Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
+                mapApiState = MapApiState.Error
             }
-        } catch (e: Exception) {
-            Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
-            mapApiState = MapApiState.Error
         }
     }
-}
 
+    /**
+     * Factory for creating MapViewModel instances.
+     *
+     * This factory uses the application container to get the restaurant repository
+     * and creates a new MapViewModel instance with it.
+     */
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

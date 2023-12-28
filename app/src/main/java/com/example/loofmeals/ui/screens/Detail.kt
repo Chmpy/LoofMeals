@@ -48,13 +48,19 @@ import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.loofmeals.R
 import com.example.loofmeals.data.model.Restaurant
-import com.example.loofmeals.ui.components.BackgroundSurface
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Error
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Loading
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Success
 import com.example.loofmeals.ui.restaurant.RestaurantDetailState
 import com.example.loofmeals.ui.restaurant.RestaurantDetailViewModel
 
+
+/**
+ * Composable function that displays the Detail screen.
+ *
+ * @param restaurantId The id of the restaurant to display.
+ * @param restaurantDetailViewModel The ViewModel for the Detail screen.
+ */
 @Composable
 fun Detail(
     restaurantId: Int, restaurantDetailViewModel: RestaurantDetailViewModel = viewModel(
@@ -112,6 +118,12 @@ fun Detail(
     }
 }
 
+/**
+ * Composable function that displays the restaurant detail.
+ *
+ * @param modifier The modifier to apply to the detail. The default value is Modifier.
+ * @param restaurantDetailState The state of the restaurant detail.
+ */
 @Composable
 fun RestaurantDetail(
     modifier: Modifier = Modifier,
@@ -139,6 +151,12 @@ fun RestaurantDetail(
     }
 }
 
+/**
+ * Composable function that displays the restaurant detail header.
+ *
+ * @param modifier The modifier to apply to the header. The default value is Modifier.
+ * @param restaurant The restaurant to display in the header.
+ */
 @Composable
 fun RestaurantDetailHeader(modifier: Modifier = Modifier, restaurant: Restaurant) {
     Column(
@@ -158,6 +176,12 @@ fun RestaurantDetailHeader(modifier: Modifier = Modifier, restaurant: Restaurant
     }
 }
 
+/**
+ * Composable function that displays the restaurant detail body.
+ *
+ * @param modifier The modifier to apply to the body. The default value is Modifier.
+ * @param restaurant The restaurant to display in the body.
+ */
 @Composable
 fun RestaurantDetailBody(modifier: Modifier = Modifier, restaurant: Restaurant) {
     Column(
@@ -283,6 +307,12 @@ private fun AccessibilityLinkBody(restaurant: Restaurant) {
     )
 }
 
+/**
+ * Composable function that displays the restaurant detail footer.
+ *
+ * @param modifier The modifier to apply to the footer. The default value is Modifier.
+ * @param restaurant The restaurant to display in the footer.
+ */
 @Composable
 fun RestaurantDetailFooter(modifier: Modifier = Modifier, restaurant: Restaurant) {
     Column(

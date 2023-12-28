@@ -2,6 +2,14 @@ package com.example.loofmeals.network
 
 import com.example.loofmeals.data.model.Restaurant
 
+/**
+ * Data class representing a restaurant fetched from the API.
+ *
+ * This class maps the JSON response from the API to a Kotlin object. The property names in this class
+ * match the keys in the JSON response.
+ *
+ * This class is used by Retrofit to parse the JSON response automatically.
+ */
 data class ApiRestaurant(
     val business_product_id: String,
     val information_group: String,
@@ -61,10 +69,16 @@ data class ApiRestaurant(
     val autism_desc: String,
     val garden: String,
     val space_table_desc: String
-) {
+)
 
-}
-
+/**
+ * Extension function to convert a list of ApiRestaurant objects to a list of Restaurant objects.
+ *
+ * This function filters out the restaurants that are marked as deleted and maps the remaining ApiRestaurant
+ * objects to Restaurant objects.
+ *
+ * @return The list of Restaurant objects.
+ */
 fun List<ApiRestaurant>.asDomainObject(): List<Restaurant> {
     val domainList = this.filter { it.deleted == "0" }.map {
         Restaurant(

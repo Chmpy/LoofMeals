@@ -38,6 +38,19 @@ import com.example.loofmeals.ui.favorite.FavoriteState
 import com.example.loofmeals.ui.favorite.FavoriteViewModel
 import com.example.loofmeals.ui.restaurant.RestaurantCard
 
+/**
+ * Composable function that displays the Favorites screen.
+ *
+ * This function creates a Box composable
+ * that contains an Image-composable for the background and a Box composable for the content.
+ * The content includes a FavoritesList composable that displays the list of favorite restaurants.
+ * The content also includes a LinearProgressIndicator composable
+ * that is displayed when the API call is loading,
+ * and a Text composable that is displayed when the API call fails.
+ *
+ * @param navController The NavController that manages the navigation between the screens.
+ * @param favoriteViewModel The ViewModel for the Favorites screen.
+ */
 @Composable
 fun Favorites(
     navController: NavController,
@@ -97,6 +110,19 @@ fun Favorites(
     }
 }
 
+/**
+ * Composable function that displays the list of favorite restaurants.
+ *
+ * This function creates a LazyColumn composable
+ * that contains RestaurantCard composable for each restaurant in the list of favorite restaurants.
+ * If the list of favorite restaurants is empty,
+ * it displays a Box composable with a Text composable that indicates the list is empty.
+ *
+ * @param modifier The modifier to apply to the LazyColumn. The default value is Modifier.
+ * @param favoriteState The state of the favorite restaurants.
+ * @param navController The NavController that manages the navigation between the screens.
+ * @param favoriteViewModel The ViewModel for the Favorites screen.
+ */
 @Composable
 fun FavoritesList(
     modifier: Modifier = Modifier,

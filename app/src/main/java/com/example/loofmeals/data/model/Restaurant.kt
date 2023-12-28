@@ -1,5 +1,10 @@
 package com.example.loofmeals.data.model
 
+/**
+ * Data class that represents a Restaurant.
+ * Notable is the isFavorite variable, which is used to determine if a restaurant is a favorite.
+ * This variable is not part of the JSON response, but is added later on.
+ */
 data class Restaurant(
     val id: Int,
     val businessProductId: String? = null,

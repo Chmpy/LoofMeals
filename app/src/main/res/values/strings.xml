@@ -42,4 +42,5 @@
     <string name="no_email">Geen e-mailadres</string>
     <string name="no_website">Geen website</string>
     <string name="network_error">Geen netwerk</string>
+    <string name="map_error">Fout bij ophalen van locaties, probeer later opnieuw</string>
 </resources>

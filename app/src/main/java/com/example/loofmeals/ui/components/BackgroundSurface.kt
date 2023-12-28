@@ -1,16 +1,22 @@
 package com.example.loofmeals.ui.components
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import com.example.loofmeals.R
 
-//Generic component to apply opaque background/card styling to a composable
+/**
+ * Composable function that applies a semi-transparent background and styling to its content.
+ *
+ * This function creates a Surface composable with a semi-transparent background and styling.
+ *
+ * @param modifier The modifier to apply to the surface. The default value is Modifier.
+ * @param content The content of the surface.
+ * This is a composable function passed as a parameter to the BackgroundSurface function.
+ */
 @Composable
 fun BackgroundSurface(
     modifier: Modifier = Modifier,

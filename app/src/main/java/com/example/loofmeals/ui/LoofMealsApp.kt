@@ -39,6 +39,18 @@ import com.example.loofmeals.ui.layout.RootLayout
 import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.launch
 
+/**
+ * Composable function that displays the main application screen.
+ *
+ * This function creates a ModalNavigationDrawer
+ * that contains a list of NavigationDrawerItems for navigation between different screens.
+ * The navigation drawer's state is remembered across recompositions,
+ * and its open/close state is handled with back button press.
+ * The selected item in the navigation drawer is highlighted
+ * and its index is remembered across recompositions.
+ *
+ * @param navController The NavController that manages the navigation between the screens.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
@@ -113,6 +125,15 @@ fun LoofMealsApp(navController: NavHostController = rememberNavController()) {
     }
 }
 
+/**
+ * Composable function that displays a list of navigation items in the navigation drawer.
+ *
+ * This function creates a list of NavigationDrawerItems for each item in the navigationItems list.
+ * Each NavigationDrawerItem has a label, an icon, and an onClick event handler.
+ * The onClick event handler navigates to the corresponding screen and closes the navigation drawer.
+ *
+ * @return A list of NavigationItems for the navigation drawer.
+ */
 @Composable
 private fun navigationItems(): List<NavigationItem> {
     return listOf(
@@ -120,11 +141,13 @@ private fun navigationItems(): List<NavigationItem> {
             title = stringResource(R.string.overview),
             selectedIcon = Icons.Filled.RestaurantMenu,
             unselectedIcon = Icons.TwoTone.Restaurant,
-        ), NavigationItem(
+        ),
+        NavigationItem(
             title = stringResource(R.string.favorites),
             selectedIcon = Icons.Filled.Favorite,
             unselectedIcon = Icons.TwoTone.Favorite,
-        ), NavigationItem(
+        ),
+        NavigationItem(
             title = stringResource(R.string.about),
             selectedIcon = Icons.Filled.Info,
             unselectedIcon = Icons.TwoTone.Info,

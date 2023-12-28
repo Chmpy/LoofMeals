@@ -43,6 +43,19 @@ import com.example.loofmeals.ui.restaurant.RestaurantCard
 import com.example.loofmeals.ui.restaurant.RestaurantOverviewState
 import com.example.loofmeals.ui.restaurant.RestaurantViewModel
 
+/**
+ * Composable function that displays the Overview screen.
+ *
+ * This function creates a Box composable
+ * that contains an Image-composable for the background and a Box composable for the content.
+ * The content includes a SearchBar composable for searching restaurants,
+ * a LinearProgressIndicator composable that is displayed when the API call is loading,
+ * and a RestaurantList composable that displays the list of restaurants.
+ * The content also includes a Text-composable that is displayed when the API call fails.
+ *
+ * @param navController The NavController that manages the navigation between the screens.
+ * @param restaurantViewModel The ViewModel for the Overview screen.
+ */
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
 fun Overview(
@@ -162,6 +175,17 @@ fun Overview(
     }
 }
 
+/**
+ * Composable function that displays the list of restaurants.
+ *
+ * This function creates a LazyColumn composable
+ * that contains RestaurantCard composables for each restaurant in the list of restaurants.
+ *
+ * @param modifier The modifier to apply to the LazyColumn. The default value is Modifier.
+ * @param restaurantOverviewState The state of the restaurants.
+ * @param navController The NavController that manages the navigation between the screens.
+ * @param restaurantViewModel The ViewModel for the Overview screen.
+ */
 @Composable
 fun RestaurantList(
     modifier: Modifier = Modifier,

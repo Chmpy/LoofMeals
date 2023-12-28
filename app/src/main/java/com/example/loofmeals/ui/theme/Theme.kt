@@ -74,23 +74,40 @@ private val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = md_theme_dark_onSurfaceVariant,
 )
 
+/**
+ * Composable function that applies the theme to the content.
+ *
+ * This function applies the light or dark theme to the content based on the system settings or the provided parameter.
+ * It also sets the status bar and navigation bar colors to the primary color of the theme.
+ *
+ * @param darkTheme A boolean value indicating whether to use the dark theme.
+ * If not provided, the function uses the system settings to determine the theme.
+ * @param content The content to which the theme should be applied.
+ * This is a composable function passed as a parameter to the LoofTheme function.
+ */
 @Composable
 fun LoofTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-
+    // Get the window of the current activity
     val window = (LocalView.current.context as Activity).window
+
+    // Determine the theme color based on whether the dark theme is enabled
     val themeColor =
         if (darkTheme) DarkColorScheme.primary.toArgb() else LightColorScheme.primary.toArgb()
+
+    // Set the status bar and navigation bar colors to the theme color
     window.statusBarColor = themeColor
     window.navigationBarColor = themeColor
 
+    // Determine the color scheme based on whether the dark theme is enabled
     val colorScheme = when {
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
 
+    // Apply the theme to the content
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,

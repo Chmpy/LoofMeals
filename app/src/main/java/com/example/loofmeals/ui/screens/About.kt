@@ -37,6 +37,16 @@ import androidx.compose.ui.text.withStyle
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.BackgroundSurface
 
+/**
+ * Composable function that displays the About screen.
+ *
+ * This function creates a Box composable
+ * that contains an Image-composable for the background and a Box composable for the content.
+ * The content includes a BackgroundSurface composable that contains a Column composable.
+ * The Column composable contains Text-composable for the title and description,
+ * FeatureItem composable for the features,
+ * and ContactSection composable for the contact information.
+ */
 @Composable
 fun About() {
     Box(
@@ -108,6 +118,15 @@ fun About() {
     }
 }
 
+/**
+ * Composable function that creates a feature item.
+ *
+ * This function creates a Row composable
+ * that contains an Icon-composable for the icon and a Text-composable for the text.
+ *
+ * @param text The text to display in the feature item.
+ * @param icon The icon to display in the feature item.
+ */
 @Composable
 fun FeatureItem(text: String, icon: ImageVector) {
     Row(
@@ -123,6 +142,16 @@ fun FeatureItem(text: String, icon: ImageVector) {
     }
 }
 
+/**
+ * Composable function that creates a contact section.
+ *
+ * This function creates a Row composable
+ * that contains an Icon composable for the icon and a ClickableText composable for the email.
+ * When the email is clicked, it opens the email client with a pre-filled email.
+ *
+ * @param email The email to display in the contact section.
+ * @param icon The icon to display in the contact section.
+ */
 @Composable
 fun ContactSection(email: String, icon: ImageVector) {
     val context = LocalContext.current

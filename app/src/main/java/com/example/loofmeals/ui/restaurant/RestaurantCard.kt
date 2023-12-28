@@ -25,7 +25,18 @@ import androidx.compose.ui.res.dimensionResource
 import com.example.loofmeals.R
 import com.example.loofmeals.data.model.Restaurant
 
-
+/**
+ * Composable function that creates a restaurant card.
+ *
+ * This function creates a Card composable
+ * that displays the name of the restaurant and a favorite icon.
+ * The card is clickable and the favorite icon is also clickable.
+ *
+ * @param modifier The modifier to apply to the Card. The default value is Modifier.
+ * @param restaurant The restaurant to display in the card.
+ * @param onClick The function to call when the card is clicked.
+ * @param onIconClick The function to call when the favorite icon is clicked.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RestaurantCard(
@@ -36,7 +47,6 @@ fun RestaurantCard(
 ) {
     Card(
         onClick = onClick,
-        colors = cardColors(),
         modifier = modifier
             .fillMaxWidth()
             .padding(dimensionResource(R.dimen.sm))
@@ -70,13 +80,4 @@ fun RestaurantCard(
         }
 
     }
-}
-
-
-@Composable
-fun cardColors(): CardColors {
-    return CardDefaults.cardColors(
-        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-    )
 }

@@ -17,6 +17,19 @@ import com.example.loofmeals.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+/**
+ * Composable function that creates a top bar with a title and a navigation icon.
+ *
+ * This function creates a CenterAlignedTopAppBar composable with a title and a navigation icon.
+ * The title is centered and the navigation icon is aligned to the start.
+ * When the navigation icon is clicked,
+ * it opens the drawer.
+ *
+ * @param screenTitle The resource id of the string to display as the title.
+ * @param scope The CoroutineScope in which to launch coroutines.
+ * This is used to control the lifecycle of the coroutines.
+ * @param drawerState The state of the drawer. This is used to control the opening and closing of the drawer.
+ */
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun TopLoofBar(

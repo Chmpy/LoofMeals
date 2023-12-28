@@ -18,6 +18,18 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for the RestaurantDetail screen.
+ *
+ * This ViewModel fetches the details of a specific restaurant from the repository
+ * and updates the UI state.
+ * If the API call is successful,
+ * it updates the UI state with the fetched restaurant details and sets the API call state to Success.
+ * If the API call fails, it sets the API call state to Error.
+ *
+ * @property restaurantRepository The repository to fetch the restaurant details from.
+ * @property restaurantId The id of the restaurant to fetch the details of.
+ */
 class RestaurantDetailViewModel(
     private val restaurantRepository: RestaurantRepository,
     private val restaurantId: Int
@@ -26,16 +38,28 @@ class RestaurantDetailViewModel(
     private val _uiState = MutableStateFlow(RestaurantDetailState())
     val uiState: StateFlow<RestaurantDetailState> = _uiState.asStateFlow()
 
+    // The state of the API call to fetch the restaurant details.
+    // This is a mutable state that is updated every time the API call state changes.
     var restaurantDetailApiState: RestaurantDetailApiState by mutableStateOf(
         RestaurantDetailApiState.Loading
     )
         private set
 
+    // Fetch the restaurant details when the ViewModel is initialized.
     init {
         getRestaurantDetail()
     }
 
-    fun getRestaurantDetail() {
+    /**
+     * Fetch the details of a specific restaurant from the repository.
+     *
+     * This function fetches the details of the restaurant with the given id from the repository
+     * and updates the UI state.
+     * If the API call is successful,
+     * it updates the UI state with the fetched restaurant details and sets the API call state to Success.
+     * If the API call fails, it sets the API call state to Error.
+     */
+    private fun getRestaurantDetail() {
         viewModelScope.launch {
             restaurantDetailApiState = RestaurantDetailApiState.Loading
             try {
@@ -60,6 +84,12 @@ class RestaurantDetailViewModel(
         }
     }
 
+    /**
+     * Factory for creating RestaurantDetailViewModel instances.
+     *
+     * This factory uses the application container to get the restaurant repository
+     * and creates a new RestaurantDetailViewModel instance with it.
+     */
     companion object {
         fun Factory(restaurantId: Int): ViewModelProvider.Factory = viewModelFactory {
             initializer {

@@ -4,6 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.loofmeals.data.model.Restaurant
 
+/**
+ * Entity class for the restaurants table in the database.
+ *
+ * This class represents a restaurant and its properties are the columns of the table.
+ */
 @Entity(tableName = "restaurants")
 data class RestaurantEntity(
     @PrimaryKey(autoGenerate = true)
@@ -68,6 +73,13 @@ data class RestaurantEntity(
     val isFavorite: Boolean = false
 )
 
+/**
+ * Extension function to convert a Restaurant object to a RestaurantEntity object.
+ *
+ * This function is used when inserting a Restaurant object into the database.
+ *
+ * @return The RestaurantEntity object.
+ */
 fun Restaurant.asRestaurantEntity(): RestaurantEntity {
     return RestaurantEntity(
         id = id,
@@ -132,6 +144,13 @@ fun Restaurant.asRestaurantEntity(): RestaurantEntity {
     )
 }
 
+/**
+ * Extension function to convert a RestaurantEntity object to a Restaurant object.
+ *
+ * This function is used when retrieving a RestaurantEntity object from the database.
+ *
+ * @return The Restaurant object.
+ */
 fun RestaurantEntity.asDomainObject(): Restaurant {
     return Restaurant(
         id = id,
@@ -196,6 +215,13 @@ fun RestaurantEntity.asDomainObject(): Restaurant {
     )
 }
 
+/**
+ * Extension function to convert a list of RestaurantEntity objects to a list of Restaurant objects.
+ *
+ * This function is used when retrieving a list of RestaurantEntity objects from the database.
+ *
+ * @return The list of Restaurant objects.
+ */
 fun List<RestaurantEntity>.asDomainObject(): List<Restaurant> {
     return map {
         Restaurant(
