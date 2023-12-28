@@ -2,8 +2,11 @@ package com.example.loofmeals.ui.screens
 
 import android.content.Context
 import android.graphics.Rect
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -17,12 +20,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
+import com.example.loofmeals.ui.components.BackgroundSurface
 import com.example.loofmeals.ui.map.MapViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionRequired
@@ -65,19 +73,23 @@ fun Map(
         navController.navigate("${Screens.Detail.name}/$restaurantId")
     }
 
-    PermissionRequired(permissionState = fineLocationPermissionState,
+    PermissionRequired(
+        permissionState = fineLocationPermissionState,
         permissionNotGrantedContent = {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                // Content to show when the permission is not granted
-                Text(stringResource(R.string.map_no_permission))
-            }
+            // Content to show when the permission is not granted
+            NoPermContent(
+                background = painterResource(id = R.drawable.background5),
+                text = stringResource(R.string.map_no_permission)
+            )
         },
         permissionNotAvailableContent = {
             // Content to show when the permission is not available
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Text(stringResource(R.string.map_no_permission))
-            }
-        }) {
+            NoPermContent(
+                background = painterResource(id = R.drawable.background5),
+                text = stringResource(R.string.map_no_location)
+            )
+        },
+    ) {
 
         AndroidView({ mapView }) { mapView ->
             Configuration.getInstance().load(
@@ -127,6 +139,35 @@ fun Map(
     DisposableEffect(mapView) {
         onDispose {
             lastLocation = mapView.mapCenter as GeoPoint?
+        }
+    }
+}
+
+@Composable
+private fun NoPermContent(background: Painter, text: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Image(
+            painter = background,
+            contentDescription = "background1",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.matchParentSize()
+        )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(dimensionResource(R.dimen.md)),
+        ) {
+            BackgroundSurface {
+                Text(
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),
+                    text = text
+                )
+            }
         }
     }
 }
