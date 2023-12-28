@@ -13,12 +13,10 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
 import com.example.loofmeals.data.RestaurantRepository
 import com.example.loofmeals.data.model.Restaurant
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import okio.IOException
@@ -39,14 +37,17 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
         getRestaurants()
     }
 
-    fun getRestaurants() {
+    private fun getRestaurants() {
         viewModelScope.launch {
             restaurantApiState = RestaurantApiState.Loading
             try {
                 //Simulate network delay
                 kotlinx.coroutines.delay(2000)
-
                 restaurantRepository.getRestaurantList().collect { restaurants ->
+                    if (currentQuery.isNotEmpty()) {
+                        filterRestaurants(currentQuery)
+                        return@collect
+                    }
                     Log.d("RestaurantViewModel", "getRestaurants: ${restaurants.size}")
                     _uiState.update {
                         it.copy(restaurants = restaurants)
@@ -66,12 +67,12 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
     fun refreshRestaurants() {
         viewModelScope.launch {
             restaurantApiState = RestaurantApiState.Loading
-            try {
+            restaurantApiState = try {
                 restaurantRepository.refreshRestaurantList()
-                restaurantApiState = RestaurantApiState.Success
+                RestaurantApiState.Success
             } catch (e: IOException) {
                 Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
-                restaurantApiState = RestaurantApiState.NetworkError
+                RestaurantApiState.NetworkError
             }
         }
     }
@@ -97,12 +98,14 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
 //        }
 
         viewModelScope.launch {
-            restaurantRepository.getFilteredRestaurants(currentQuery)
-                .collect { restaurants ->
-                    _uiState.update {
-                        it.copy(restaurants = restaurants)
-                    }
+            restaurantRepository.getFilteredRestaurants(currentQuery).collect { restaurants ->
+                Log.d("RestaurantViewModel", "filterRestaurants: ${restaurants.size}")
+                _uiState.update {
+                    it.copy(restaurants = restaurants)
                 }
+                //We cancel the job to avoid unnecessary updates from shared flow
+                cancel()
+            }
         }
     }
 

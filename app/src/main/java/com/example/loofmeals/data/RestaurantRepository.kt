@@ -49,22 +49,26 @@ class CachingRestaurantRepository(
     }
 
     override fun getFilteredRestaurants(query: String): Flow<List<Restaurant>> {
+        Log.d("CachingRestaurantRepository", "getFilteredRestaurants: Fetching with query: $query")
         return restaurantDao.getFilteredRestaurants(query).map { restaurantList ->
             restaurantList.asDomainObject()
         }
     }
 
     override fun getRestaurantById(id: Int): Flow<Restaurant> {
+        Log.d("CachingRestaurantRepository", "getRestaurantById: Fetching with id: $id")
         return restaurantDao.getRestaurantById(id).map { it.asDomainObject() }
     }
 
     override fun getFavoriteRestaurants(): Flow<List<Restaurant>> {
+        Log.d("CachingRestaurantRepository", "getFavoriteRestaurants: Fetching favorites")
         return restaurantDao.getFavoriteRestaurants().map { restaurantList ->
             restaurantList.asDomainObject()
         }
     }
 
     override suspend fun updateRestaurant(restaurant: Restaurant) {
+        Log.d("CachingRestaurantRepository", "updateRestaurant: Updating restaurant with id: ${restaurant.id}")
         restaurantDao.updateRestaurant(restaurant.asRestaurantEntity())
     }
 

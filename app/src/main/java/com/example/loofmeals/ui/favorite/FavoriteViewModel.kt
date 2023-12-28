@@ -29,8 +29,7 @@ class FavoriteViewModel(private val restaurantRepository: RestaurantRepository) 
         getFavoriteRestaurants()
     }
 
-    fun getFavoriteRestaurants() {
-
+    private fun getFavoriteRestaurants() {
         viewModelScope.launch {
             favoriteApiState = FavoriteApiState.Loading
             try {
