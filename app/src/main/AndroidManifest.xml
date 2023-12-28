@@ -19,6 +19,7 @@
         android:roundIcon="@mipmap/loofmeals_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LoofMeals"
+        android:screenOrientation="sensorPortrait"
         tools:targetApi="tiramisu">
         <activity
             android:name="com.example.loofmeals.MainActivity"
