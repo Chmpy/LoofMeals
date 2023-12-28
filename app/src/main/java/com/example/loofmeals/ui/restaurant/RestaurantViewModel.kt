@@ -13,11 +13,15 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
 import com.example.loofmeals.data.RestaurantRepository
 import com.example.loofmeals.data.model.Restaurant
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okio.IOException
 
 class RestaurantViewModel(private val restaurantRepository: RestaurantRepository) : ViewModel() {
 
@@ -26,6 +30,8 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
 
     var restaurantApiState: RestaurantApiState by mutableStateOf(RestaurantApiState.Loading)
         private set
+
+    private var currentQuery: String = ""
 
 //    private var searchJob: Job? = null
 
@@ -50,12 +56,30 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
             } catch (e: Exception) {
                 Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
                 restaurantApiState = RestaurantApiState.Error
+                if (e is IOException) {
+                    restaurantApiState = RestaurantApiState.NetworkError
+                }
+            }
+        }
+    }
+
+    fun refreshRestaurants() {
+        viewModelScope.launch {
+            restaurantApiState = RestaurantApiState.Loading
+            try {
+                restaurantRepository.refreshRestaurantList()
+                restaurantApiState = RestaurantApiState.Success
+            } catch (e: IOException) {
+                Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
+                restaurantApiState = RestaurantApiState.NetworkError
             }
         }
     }
 
 
     fun filterRestaurants(query: String) {
+
+        currentQuery = query
 
         /*If we want to change the ux to change, less bouncy and less frequent updates, we can use debouncing*/
 //        // Cancel the previous debounced job
@@ -73,7 +97,7 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
 //        }
 
         viewModelScope.launch {
-            restaurantRepository.getFilteredRestaurants(query)
+            restaurantRepository.getFilteredRestaurants(currentQuery)
                 .collect { restaurants ->
                     _uiState.update {
                         it.copy(restaurants = restaurants)

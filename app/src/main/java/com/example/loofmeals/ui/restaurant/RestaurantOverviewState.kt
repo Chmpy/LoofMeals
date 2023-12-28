@@ -11,5 +11,6 @@ sealed interface RestaurantApiState {
     data object Success : RestaurantApiState
     data object Loading : RestaurantApiState
     data object Error : RestaurantApiState
+    data object NetworkError : RestaurantApiState
 
 }

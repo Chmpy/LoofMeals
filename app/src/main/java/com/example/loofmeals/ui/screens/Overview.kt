@@ -1,5 +1,6 @@
 package com.example.loofmeals.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,15 +26,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
+import com.example.loofmeals.ui.components.BackgroundSurface
 import com.example.loofmeals.ui.components.SearchBar
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.Error
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.Loading
+import com.example.loofmeals.ui.restaurant.RestaurantApiState.NetworkError
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.Success
 import com.example.loofmeals.ui.restaurant.RestaurantCard
 import com.example.loofmeals.ui.restaurant.RestaurantOverviewState
@@ -49,7 +53,7 @@ fun Overview(
     val restaurantApiState = restaurantViewModel.restaurantApiState
     val pullRefreshState = rememberPullRefreshState(
         refreshing = restaurantApiState is Loading,
-        onRefresh = { restaurantViewModel.getRestaurants() },
+        onRefresh = { restaurantViewModel.refreshRestaurants() },
     )
 
     Box(
@@ -65,6 +69,13 @@ fun Overview(
         )
         Column {
             SearchBar(restaurantViewModel::filterRestaurants, modifier = Modifier.fillMaxWidth())
+            if (restaurantApiState is NetworkError) {
+                Toast.makeText(
+                    LocalContext.current,
+                    stringResource(id = R.string.network_error),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
             when (restaurantApiState) {
                 is Loading -> {
                     Row(
@@ -90,8 +101,15 @@ fun Overview(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         item {
-                            Text(stringResource(id = R.string.restaurants_get_error))
+                            BackgroundSurface {
+                                Text(
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),
+                                    text = stringResource(id = R.string.restaurants_get_error)
+                                )
+                            }
                         }
+
                     }
                 }
 
@@ -102,9 +120,39 @@ fun Overview(
                         restaurantViewModel = restaurantViewModel
                     )
                 }
+
+                is NetworkError -> {
+                    if (restaurantOverviewState.restaurants.isEmpty()) {
+
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(dimensionResource(R.dimen.md)),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+
+                            item {
+                                BackgroundSurface {
+                                    Text(
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),
+                                        text = stringResource(id = R.string.restaurants_get_error)
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        RestaurantList(
+                            restaurantOverviewState = restaurantOverviewState,
+                            navController = navController,
+                            restaurantViewModel = restaurantViewModel
+                        )
+                    }
+                }
             }
         }
-        if (restaurantApiState is Success || restaurantApiState is Error) {
+        if (restaurantApiState !is Loading) {
             PullRefreshIndicator(
                 refreshing = restaurantApiState is Loading,
                 state = pullRefreshState,
@@ -134,11 +182,9 @@ fun RestaurantList(
         )
     ) {
         items(restaurantOverviewState.restaurants) { restaurant ->
-            RestaurantCard(
-                restaurant = restaurant,
+            RestaurantCard(restaurant = restaurant,
                 onClick = { goToDetail(restaurant.id) },
-                onIconClick = { restaurantViewModel.updateFavorite(restaurant) }
-            )
+                onIconClick = { restaurantViewModel.updateFavorite(restaurant) })
         }
     }
 }

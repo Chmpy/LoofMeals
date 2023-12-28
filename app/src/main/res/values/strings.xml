@@ -41,4 +41,5 @@
     <string name="no_phone">Geen telefoonnummer</string>
     <string name="no_email">Geen e-mailadres</string>
     <string name="no_website">Geen website</string>
+    <string name="network_error">Geen netwerk</string>
 </resources>
