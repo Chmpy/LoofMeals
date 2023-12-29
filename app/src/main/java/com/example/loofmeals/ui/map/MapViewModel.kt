@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
-import com.example.loofmeals.data.RestaurantRepository
+import com.example.loofmeals.data.IRestaurantRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,10 +25,10 @@ import kotlinx.coroutines.launch
  * it updates the UI state with the fetched restaurants and sets the API call state to Success.
  * If the API call fails, it sets the API call state to Error.
  *
- * @property restaurantRepository The repository to fetch the restaurants from.
+ * @property IRestaurantRepository The repository to fetch the restaurants from.
  */
 class MapViewModel(
-    private val restaurantRepository: RestaurantRepository
+    private val IRestaurantRepository: IRestaurantRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MapState())
@@ -51,11 +51,11 @@ class MapViewModel(
      * it updates the UI state with the fetched restaurants and sets the API call state to Success.
      * If the API call fails, it sets the API call state to Error.
      */
-    private fun getRestaurants() {
+    fun getRestaurants() {
         viewModelScope.launch {
             mapApiState = MapApiState.Loading
             try {
-                restaurantRepository.getRestaurantList().collect { restaurants ->
+                IRestaurantRepository.getRestaurantList().collect { restaurants ->
                     Log.d("MapViewModel", "getRestaurants: ${restaurants.size}")
                     _uiState.update {
                         it.copy(
@@ -91,7 +91,7 @@ class MapViewModel(
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as LoofMealsApplication)
-                val restaurantRepository = application.container.restaurantRepository
+                val restaurantRepository = application.container.IRestaurantRepository
                 MapViewModel(restaurantRepository)
             }
         }

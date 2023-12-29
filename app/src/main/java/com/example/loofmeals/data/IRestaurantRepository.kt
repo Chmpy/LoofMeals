@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.onEach
  *
  * This interface defines the operations that can be performed on the restaurant data.
  */
-interface RestaurantRepository {
+interface IRestaurantRepository {
     fun getRestaurantList(): Flow<List<Restaurant>>
     fun getFilteredRestaurants(query: String): Flow<List<Restaurant>>
     fun getRestaurantById(id: Int): Flow<Restaurant>
@@ -39,7 +39,7 @@ interface RestaurantRepository {
 class CachingRestaurantRepository(
     private val restaurantApiService: RestaurantApiService,
     private val restaurantDao: RestaurantDao
-) : RestaurantRepository {
+) : IRestaurantRepository {
     /**
      * Get a list of all restaurants.
      *

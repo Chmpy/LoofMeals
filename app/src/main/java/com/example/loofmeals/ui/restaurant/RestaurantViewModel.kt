@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
-import com.example.loofmeals.data.RestaurantRepository
+import com.example.loofmeals.data.IRestaurantRepository
 import com.example.loofmeals.data.model.Restaurant
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +30,7 @@ import okio.IOException
  *
  * @property restaurantRepository The repository to fetch the restaurants from.
  */
-class RestaurantViewModel(private val restaurantRepository: RestaurantRepository) : ViewModel() {
+class RestaurantViewModel(private val restaurantRepository: IRestaurantRepository) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RestaurantOverviewState())
     val uiState: StateFlow<RestaurantOverviewState> = _uiState.asStateFlow()
@@ -56,9 +56,9 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
      * it updates the UI state with the fetched restaurants and sets the API call state to Success.
      * If the API call fails, it sets the API call state to Error.
      */
-    private fun getRestaurants() {
+    fun getRestaurants() {
         viewModelScope.launch {
-            restaurantApiState = RestaurantApiState.Loading
+            restaurantApiState= RestaurantApiState.Loading
             try {
                 //Simulate network delay
                 kotlinx.coroutines.delay(2000)
@@ -73,6 +73,7 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
                     }
                     restaurantApiState = RestaurantApiState.Success
                 }
+                restaurantApiState = RestaurantApiState.Success
             } catch (e: Exception) {
                 Log.d("RestaurantViewModel", "getRestaurants: ${e.message}")
                 restaurantApiState = RestaurantApiState.Error
@@ -163,7 +164,7 @@ class RestaurantViewModel(private val restaurantRepository: RestaurantRepository
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as LoofMealsApplication)
-                val restaurantRepository = application.container.restaurantRepository
+                val restaurantRepository = application.container.IRestaurantRepository
                 RestaurantViewModel(restaurantRepository)
             }
         }

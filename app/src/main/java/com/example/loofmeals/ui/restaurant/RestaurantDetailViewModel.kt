@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
-import com.example.loofmeals.data.RestaurantRepository
+import com.example.loofmeals.data.IRestaurantRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
  * @property restaurantId The id of the restaurant to fetch the details of.
  */
 class RestaurantDetailViewModel(
-    private val restaurantRepository: RestaurantRepository,
+    private val restaurantRepository: IRestaurantRepository,
     private val restaurantId: Int
 ) : ViewModel() {
 
@@ -59,7 +59,7 @@ class RestaurantDetailViewModel(
      * it updates the UI state with the fetched restaurant details and sets the API call state to Success.
      * If the API call fails, it sets the API call state to Error.
      */
-    private fun getRestaurantDetail() {
+    fun getRestaurantDetail() {
         viewModelScope.launch {
             restaurantDetailApiState = RestaurantDetailApiState.Loading
             try {
@@ -95,7 +95,7 @@ class RestaurantDetailViewModel(
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as LoofMealsApplication)
-                val restaurantRepository = application.container.restaurantRepository
+                val restaurantRepository = application.container.IRestaurantRepository
                 RestaurantDetailViewModel(restaurantRepository, restaurantId)
             }
         }

@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.loofmeals.LoofMealsApplication
-import com.example.loofmeals.data.RestaurantRepository
+import com.example.loofmeals.data.IRestaurantRepository
 import com.example.loofmeals.data.model.Restaurant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
  *
  * @property restaurantRepository The repository to fetch the favorite restaurants from.
  */
-class FavoriteViewModel(private val restaurantRepository: RestaurantRepository) : ViewModel() {
+class FavoriteViewModel(private val restaurantRepository: IRestaurantRepository) : ViewModel() {
 
     private val _uiState = MutableStateFlow(FavoriteState())
     val uiState: StateFlow<FavoriteState> = _uiState.asStateFlow()
@@ -47,7 +47,7 @@ class FavoriteViewModel(private val restaurantRepository: RestaurantRepository) 
      * it updates the UI state with the fetched restaurants and sets the API call state to Success.
      * If the API call fails, it sets the API call state to Error.
      */
-    private fun getFavoriteRestaurants() {
+    fun getFavoriteRestaurants() {
         viewModelScope.launch {
             favoriteApiState = FavoriteApiState.Loading
             try {
@@ -88,7 +88,7 @@ class FavoriteViewModel(private val restaurantRepository: RestaurantRepository) 
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as LoofMealsApplication)
-                val restaurantRepository = application.container.restaurantRepository
+                val restaurantRepository = application.container.IRestaurantRepository
                 FavoriteViewModel(restaurantRepository)
             }
         }
