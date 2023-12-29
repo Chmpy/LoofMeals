@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import com.example.loofmeals.R
 import com.example.loofmeals.data.model.Restaurant
@@ -50,7 +51,7 @@ fun RestaurantCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(dimensionResource(R.dimen.sm))
-            .alpha(0.8f)
+            .alpha(0.8f).testTag("RestaurantCard"),
     ) {
         Row(
             modifier = Modifier

@@ -1,13 +1,15 @@
 package com.example.loofmeals.ui.layout
 
-import com.example.loofmeals.ui.screens.Screens
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -20,6 +22,7 @@ import com.example.loofmeals.ui.screens.Detail
 import com.example.loofmeals.ui.screens.Favorites
 import com.example.loofmeals.ui.screens.Map
 import com.example.loofmeals.ui.screens.Overview
+import com.example.loofmeals.ui.screens.Screens
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -34,7 +37,7 @@ import kotlinx.coroutines.CoroutineScope
  * This is used to control the lifecycle of the coroutines.
  * @param navController The NavController that manages the navigation between the screens.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun RootLayout(
     drawerState: DrawerState,
@@ -53,6 +56,7 @@ fun RootLayout(
     // The Scaffold composable that contains the NavHost composable.
     Scaffold(
         topBar = { TopLoofBar(currentScreenTitle, scope, drawerState) },
+        modifier = Modifier.semantics { testTagsAsResourceId = true }
     ) { innerPadding ->
         // The NavHost composable that contains the different screens of the app.
         NavHost(

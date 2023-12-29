@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -113,7 +114,7 @@ fun Map(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.background5),
-                contentDescription = "background2",
+                contentDescription = "background5",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.matchParentSize()
             )
@@ -211,7 +212,7 @@ private fun MapContent(
      *
      * @param mapView The MapView instance for displaying the map.
      */
-    AndroidView({ mapView }) {
+    AndroidView({ mapView }, modifier = Modifier.testTag("AndroidView")) {
         // Load configuration settings for the OSM MapView
         Configuration.getInstance().load(
             context, context.getSharedPreferences(
