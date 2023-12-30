@@ -7,7 +7,7 @@
     <string name="overview">Overzicht</string>
     <string name="restaurants_get_error">Restaurants konden niet worden opgehaald</string>
     <string name="restaurant_get_error">Restaurant kon niet worden opgehaald</string>
-    <string name="search_bar_label">Naam, Gemeente, Postcode...</string>
+    <string name="search_bar_label">Naam, Gemeente, Postcode…</string>
     <string name="search_bar_description">Zoeken</string>
     <string name="search_bar_clear_description">Clear</string>
     <string name="welcome">Welkom bij Loof Meals</string>
@@ -25,7 +25,7 @@
     <string name="no_description">Geen Beschrijving</string>
     <string name="no_accessibility">Geen toegankelijkheids beschrijving</string>
     <string name="no_link">Geen toegankelijkheids link</string>
-    <string name="route">Roete</string>
+    <string name="route">Route</string>
     <string name="no_route">Geen interne route</string>
     <string name="facilities">Faciliteiten</string>
     <string name="no_facilities">Geen extra faciliteiten</string>

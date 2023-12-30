@@ -34,14 +34,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.BackgroundSurface
+import com.example.loofmeals.ui.components.RestaurantCard
 import com.example.loofmeals.ui.components.SearchBar
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.Error
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.Loading
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.NetworkError
 import com.example.loofmeals.ui.restaurant.RestaurantApiState.Success
-import com.example.loofmeals.ui.restaurant.RestaurantCard
 import com.example.loofmeals.ui.restaurant.RestaurantOverviewState
 import com.example.loofmeals.ui.restaurant.RestaurantViewModel
+import com.example.loofmeals.ui.util.Screens
 
 /**
  * Composable function that displays the Overview screen.
@@ -77,7 +78,7 @@ fun Overview(
         Image(
             painter = painterResource(id = R.drawable.background1),
             contentDescription = "background1",
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.matchParentSize()
         )
         Column {
@@ -114,7 +115,9 @@ fun Overview(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         item {
-                            BackgroundSurface {
+                            BackgroundSurface(
+                                shape = MaterialTheme.shapes.medium
+                            ) {
                                 Text(
                                     style = MaterialTheme.typography.bodyLarge,
                                     modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),
@@ -146,7 +149,9 @@ fun Overview(
                         ) {
 
                             item {
-                                BackgroundSurface {
+                                BackgroundSurface(
+                                    shape = MaterialTheme.shapes.medium
+                                ) {
                                     Text(
                                         style = MaterialTheme.typography.bodyLarge,
                                         modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),

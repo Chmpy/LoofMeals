@@ -5,4 +5,5 @@
     <dimen name="lg">16dp</dimen>
     <dimen name="xs">4dp</dimen>
     <dimen name="xl">24dp</dimen>
+    <dimen name="perm_navigation_drawer_width">300dp</dimen>
 </resources>

@@ -41,6 +41,7 @@ import com.example.loofmeals.ui.map.MapApiState.Loading
 import com.example.loofmeals.ui.map.MapApiState.Success
 import com.example.loofmeals.ui.map.MapState
 import com.example.loofmeals.ui.map.MapViewModel
+import com.example.loofmeals.ui.util.Screens
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.rememberPermissionState
@@ -115,7 +116,7 @@ fun Map(
             Image(
                 painter = painterResource(id = R.drawable.background5),
                 contentDescription = "background5",
-                contentScale = ContentScale.FillBounds,
+                contentScale = ContentScale.FillWidth,
                 modifier = Modifier.matchParentSize()
             )
             when (mapApiState) {
@@ -141,7 +142,9 @@ fun Map(
                             .padding(dimensionResource(id = R.dimen.xl)),
                         contentAlignment = Alignment.Center
                     ) {
-                        BackgroundSurface {
+                        BackgroundSurface(
+                            shape = MaterialTheme.shapes.medium
+                        ) {
                             Text(
                                 text = stringResource(id = R.string.map_error),
                                 style = MaterialTheme.typography.bodyLarge,
@@ -286,7 +289,7 @@ private fun NoPermContent(background: Painter, text: String) {
         Image(
             painter = background,
             contentDescription = "background1",
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.matchParentSize()
         )
         Box(
@@ -295,7 +298,7 @@ private fun NoPermContent(background: Painter, text: String) {
                 .fillMaxSize()
                 .padding(dimensionResource(R.dimen.md)),
         ) {
-            BackgroundSurface {
+            BackgroundSurface(shape = MaterialTheme.shapes.medium) {
                 Text(
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),

@@ -2,6 +2,7 @@ package com.example.loofmeals.ui.layout
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -21,8 +22,9 @@ import com.example.loofmeals.ui.screens.About
 import com.example.loofmeals.ui.screens.Detail
 import com.example.loofmeals.ui.screens.Favorites
 import com.example.loofmeals.ui.screens.Map
+import com.example.loofmeals.ui.util.NavigationType
 import com.example.loofmeals.ui.screens.Overview
-import com.example.loofmeals.ui.screens.Screens
+import com.example.loofmeals.ui.util.Screens
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -32,6 +34,7 @@ import kotlinx.coroutines.CoroutineScope
  * The NavHost composable
  * contains the different screens of the app and manages the navigation between them.
  *
+ * @param navigationType The type of navigation to use, determines top bar.
  * @param drawerState The state of the drawer. This is used to control the opening and closing of the drawer.
  * @param scope The CoroutineScope in which to launch coroutines.
  * This is used to control the lifecycle of the coroutines.
@@ -40,7 +43,8 @@ import kotlinx.coroutines.CoroutineScope
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun RootLayout(
-    drawerState: DrawerState,
+    navigationType: NavigationType,
+    drawerState: DrawerState = DrawerState(DrawerValue.Closed),
     scope: CoroutineScope,
     navController: NavHostController,
 ) {
@@ -53,9 +57,14 @@ fun RootLayout(
         screen?.title ?: R.string.app_name
     } ?: R.string.app_name
 
+
     // The Scaffold composable that contains the NavHost composable.
     Scaffold(
-        topBar = { TopLoofBar(currentScreenTitle, scope, drawerState) },
+        topBar = {
+            if (navigationType == NavigationType.VAR_NAVIGATION_DRAWER) {
+                TopLoofBar(currentScreenTitle, scope, drawerState)
+            }
+        },
         modifier = Modifier.semantics { testTagsAsResourceId = true }
     ) { innerPadding ->
         // The NavHost composable that contains the different screens of the app.

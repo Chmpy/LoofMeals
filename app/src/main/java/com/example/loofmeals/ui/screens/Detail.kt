@@ -26,7 +26,6 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Web
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,7 +33,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -48,6 +46,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.loofmeals.R
 import com.example.loofmeals.data.model.Restaurant
+import com.example.loofmeals.ui.components.BackgroundSurface
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Error
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Loading
 import com.example.loofmeals.ui.restaurant.RestaurantDetailApiState.Success
@@ -77,7 +76,7 @@ fun Detail(
         Image(
             painter = painterResource(id = R.drawable.background2),
             contentDescription = "background2",
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.matchParentSize()
         )
         when (restaurantDetailApiState) {
@@ -130,11 +129,7 @@ fun RestaurantDetail(
     restaurantDetailState: RestaurantDetailState,
 ) {
     val lazyListState = rememberLazyListState()
-    Surface(
-        modifier = modifier.alpha(0.8f),
-        color = MaterialTheme.colorScheme.surface,
-        shadowElevation = dimensionResource(id = R.dimen.sm),
-    ) {
+    BackgroundSurface(shape = null) {
         LazyColumn(
             modifier = modifier
                 .fillMaxSize()

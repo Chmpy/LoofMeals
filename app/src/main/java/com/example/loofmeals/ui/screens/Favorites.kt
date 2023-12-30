@@ -36,7 +36,8 @@ import com.example.loofmeals.ui.favorite.FavoriteApiState.Loading
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Success
 import com.example.loofmeals.ui.favorite.FavoriteState
 import com.example.loofmeals.ui.favorite.FavoriteViewModel
-import com.example.loofmeals.ui.restaurant.RestaurantCard
+import com.example.loofmeals.ui.components.RestaurantCard
+import com.example.loofmeals.ui.util.Screens
 
 /**
  * Composable function that displays the Favorites screen.
@@ -65,7 +66,7 @@ fun Favorites(
         Image(
             painter = painterResource(id = R.drawable.background4),
             contentDescription = "background4",
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.matchParentSize()
         )
         when (favoriteApiState) {
@@ -145,7 +146,7 @@ fun FavoritesList(
                 .padding(dimensionResource(id = R.dimen.xl)),
             contentAlignment = Alignment.Center
         ) {
-            BackgroundSurface {
+            BackgroundSurface(shape = MaterialTheme.shapes.medium) {
                 val offsetLength = stringResource(id = R.string.favorites_empty).length
                 ClickableText(text = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground)) {

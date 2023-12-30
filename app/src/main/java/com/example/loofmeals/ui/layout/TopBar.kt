@@ -43,8 +43,7 @@ fun TopLoofBar(
         ),
         title = {
             Text(
-                text = stringResource(screenTitle),
-                color = MaterialTheme.colorScheme.onPrimary
+                text = stringResource(screenTitle), color = MaterialTheme.colorScheme.onPrimary
             )
         },
         navigationIcon = {

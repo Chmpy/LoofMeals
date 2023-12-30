@@ -1,4 +1,4 @@
-package com.example.loofmeals.ui.screens
+package com.example.loofmeals.ui.util
 
 import androidx.annotation.StringRes
 import com.example.loofmeals.R

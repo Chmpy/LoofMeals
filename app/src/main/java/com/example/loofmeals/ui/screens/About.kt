@@ -57,11 +57,11 @@ fun About() {
         Image(
             painter = painterResource(id = R.drawable.background3),
             contentDescription = "background3",
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.matchParentSize()
         )
         Box(modifier = Modifier.padding(dimensionResource(R.dimen.lg))) {
-            BackgroundSurface {
+            BackgroundSurface(shape = MaterialTheme.shapes.medium) {
                 Column(
                     modifier = Modifier
                         .padding(

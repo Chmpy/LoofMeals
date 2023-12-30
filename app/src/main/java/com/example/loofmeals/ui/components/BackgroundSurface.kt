@@ -1,10 +1,12 @@
 package com.example.loofmeals.ui.components
 
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
 import com.example.loofmeals.R
 
@@ -20,14 +22,25 @@ import com.example.loofmeals.R
 @Composable
 fun BackgroundSurface(
     modifier: Modifier = Modifier,
+    shape: Shape?,
     content: @Composable () -> Unit,
 ) {
-    Surface(
-        modifier = modifier.alpha(0.8f),
-        color = MaterialTheme.colorScheme.surface,
-        shadowElevation = dimensionResource(id = R.dimen.sm),
-        shape = MaterialTheme.shapes.medium,
-    ) {
-        content()
+    if (shape != null) {
+        Surface(
+            modifier = modifier.alpha(0.8f),
+            color = MaterialTheme.colorScheme.surface,
+            shadowElevation = dimensionResource(id = R.dimen.sm),
+            shape = shape,
+        ) {
+            content()
+        }
+    } else {
+        Surface(
+            modifier = modifier.alpha(0.8f),
+            color = MaterialTheme.colorScheme.surface,
+            shadowElevation = dimensionResource(id = R.dimen.sm),
+        ) {
+            content()
+        }
     }
 }

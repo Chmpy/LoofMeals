@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.loofmeals.ui.LoofMealsApp
 import com.example.loofmeals.ui.theme.LoofTheme
@@ -28,6 +30,7 @@ class MainActivity : ComponentActivity() {
      * it most recently supplied in onSaveInstanceState(Bundle).
      * Note: Otherwise it is null.
      */
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         // Check if the Android version is 33 or higher
         if (Build.VERSION.SDK_INT >= 33) {
@@ -48,7 +51,8 @@ class MainActivity : ComponentActivity() {
             // Set the content to the LoofMealsApp composable
             setContent {
                 LoofTheme {
-                    LoofMealsApp()
+                    val windowSize = calculateWindowSizeClass(this)
+                    LoofMealsApp(windowSize.widthSizeClass)
                 }
             }
         }
