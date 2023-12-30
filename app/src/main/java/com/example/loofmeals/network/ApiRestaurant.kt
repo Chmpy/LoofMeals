@@ -8,8 +8,9 @@ import com.example.loofmeals.data.model.Restaurant
  * This class maps the JSON response from the API to a Kotlin object. The property names in this class
  * match the keys in the JSON response.
  *
- * This class is used by Retrofit to parse the JSON response automatically.
+ * Retrofit uses this class to parse the JSON response automatically.
  */
+@Suppress("PropertyName")
 data class ApiRestaurant(
     val business_product_id: String,
     val information_group: String,

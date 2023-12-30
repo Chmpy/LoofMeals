@@ -26,17 +26,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.BackgroundSurface
+import com.example.loofmeals.ui.components.RestaurantCard
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Error
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Loading
 import com.example.loofmeals.ui.favorite.FavoriteApiState.Success
 import com.example.loofmeals.ui.favorite.FavoriteState
 import com.example.loofmeals.ui.favorite.FavoriteViewModel
-import com.example.loofmeals.ui.components.RestaurantCard
 import com.example.loofmeals.ui.util.Screens
 
 /**
@@ -148,19 +149,26 @@ fun FavoritesList(
         ) {
             BackgroundSurface(shape = MaterialTheme.shapes.medium) {
                 val offsetLength = stringResource(id = R.string.favorites_empty).length
-                ClickableText(text = buildAnnotatedString {
-                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground)) {
-                        append(stringResource(id = R.string.favorites_empty))
-                    }
-                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                        append(" " + "overzicht")
-                    }
-                }, onClick = { offset ->
-                    //Only navigate when the user clicks on the word "overzicht"
-                    if (offset >= offsetLength) {
-                        navController.navigate(Screens.Overview.name)
-                    }
-                },
+                ClickableText(
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground)) {
+                            append(stringResource(id = R.string.favorites_empty) + " ")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = MaterialTheme.colorScheme.primary,
+                                textDecoration = TextDecoration.Underline
+                            )
+                        ) {
+                            append("overzicht")
+                        }
+                    },
+                    onClick = { offset ->
+                        //Only navigate when the user clicks on the word "overzicht"
+                        if (offset >= offsetLength) {
+                            navController.navigate(Screens.Overview.name)
+                        }
+                    },
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(dimensionResource(id = R.dimen.md)),
                 )

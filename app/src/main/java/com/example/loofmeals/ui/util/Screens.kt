@@ -30,6 +30,6 @@ enum class Screens(@StringRes val title: Int, val route: String? = null, val id:
          * @return The screen whose route starts with the given route, or null if no such screen is found.
          */
         fun getScreenByRoute(route: String): Screens? =
-            values().find { it.route?.let { r -> route.startsWith(r, ignoreCase = true) } ?: false }
+            entries.find { it.route?.let { r -> route.startsWith(r, ignoreCase = true) } ?: false }
     }
 }

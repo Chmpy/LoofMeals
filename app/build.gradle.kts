@@ -117,6 +117,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testImplementation("androidx.test:core:1.5.0")
     testImplementation("org.mockito:mockito-core:5.7.0")
+    //noinspection GradleDependency
     testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
     testImplementation("io.mockk:mockk:1.13.8")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")

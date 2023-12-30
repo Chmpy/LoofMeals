@@ -281,13 +281,7 @@ private fun AccessibilityLinkBody(restaurant: Restaurant) {
     val validUrl = urlPattern.matches(linkToAccessibilityWebsite ?: "")
     ClickableText(text = buildAnnotatedString {
         withStyle(
-            if (validUrl) SpanStyle(
-                textDecoration = TextDecoration.Underline,
-                color = MaterialTheme.colorScheme.primary
-            ) else SpanStyle(
-                textDecoration = TextDecoration.Underline,
-                color = MaterialTheme.colorScheme.error
-            )
+            linkSpanStyle(valid = validUrl)
         ) {
             append(
                 if (linkToAccessibilityWebsite.isNullOrEmpty()) stringResource(R.string.no_link) else linkToAccessibilityWebsite
@@ -354,9 +348,12 @@ private fun AddressBody(restaurant: Restaurant) {
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
         val context = LocalContext.current
+        val validAddress = address.isNotEmpty()
         ClickableText(text = buildAnnotatedString {
-            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                append(address)
+            withStyle(
+                linkSpanStyle(valid = validAddress)
+            ) {
+                append(address.ifEmpty { stringResource(R.string.no_address) })
             }
         }, onClick = {
             val long = restaurant.long
@@ -388,21 +385,22 @@ private fun PhoneBody(restaurant: Restaurant) {
             )
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
-//        Text(
-//            text = if (restaurant.phone1.isNullOrEmpty()) stringResource(R.string.no_phone) else restaurant.phone1,
-//            style = MaterialTheme.typography.bodyMedium
-//        )
         val context = LocalContext.current
+        val validPhone = restaurant.phone1?.contains("+") ?: false
         ClickableText(text = buildAnnotatedString {
-            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                append(restaurant.phone1)
+            withStyle(
+                linkSpanStyle(valid = validPhone)
+            ) {
+                append(if (restaurant.phone1.isNullOrEmpty()) stringResource(R.string.no_phone) else restaurant.phone1)
             }
         }, onClick = {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${restaurant.phone1}")
-            Log.d("Detail", "Opening phone dialer on: " + "tel:${restaurant.phone1}")
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
+            if (validPhone) {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:${restaurant.phone1}")
+                Log.d("Detail", "Opening phone dialer on: " + "tel:${restaurant.phone1}")
+                if (intent.resolveActivity(context.packageManager) != null) {
+                    context.startActivity(intent)
+                }
             }
         }, style = MaterialTheme.typography.bodyMedium
         )
@@ -422,17 +420,22 @@ private fun EmailBody(restaurant: Restaurant) {
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
         val context = LocalContext.current
+        val validEmail = restaurant.email?.contains("@") ?: false
         ClickableText(text = buildAnnotatedString {
-            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                append(restaurant.email)
+            withStyle(
+                linkSpanStyle(valid = validEmail)
+            ) {
+                append(if (restaurant.email.isNullOrEmpty()) stringResource(R.string.no_email) else restaurant.email)
             }
         }, onClick = {
-            val intent = Intent(Intent.ACTION_SENDTO)
-            intent.data = Uri.parse("mailto:${restaurant.email}")
-            intent.putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
-            Log.d("Detail", "Opening email on: " + "mailto:${restaurant.email}")
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
+            if (validEmail) {
+                val intent = Intent(Intent.ACTION_SENDTO)
+                intent.data = Uri.parse("mailto:${restaurant.email}")
+                intent.putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
+                Log.d("Detail", "Opening email on: " + "mailto:${restaurant.email}")
+                if (intent.resolveActivity(context.packageManager) != null) {
+                    context.startActivity(intent)
+                }
             }
         }, style = MaterialTheme.typography.bodyMedium
         )
@@ -457,13 +460,7 @@ private fun WebsiteBody(restaurant: Restaurant) {
         val validUrl = urlPattern.matches(website ?: "")
         ClickableText(text = buildAnnotatedString {
             withStyle(
-                if (validUrl) SpanStyle(
-                    textDecoration = TextDecoration.Underline,
-                    color = MaterialTheme.colorScheme.primary
-                ) else SpanStyle(
-                    textDecoration = TextDecoration.Underline,
-                    color = MaterialTheme.colorScheme.error
-                )
+                linkSpanStyle(valid = validUrl)
             ) {
                 append(
                     if (website.isNullOrEmpty()) stringResource(R.string.no_website) else website
@@ -479,3 +476,9 @@ private fun WebsiteBody(restaurant: Restaurant) {
         )
     }
 }
+
+@Composable
+fun linkSpanStyle(valid: Boolean) = SpanStyle(
+    textDecoration = if (valid) TextDecoration.Underline else TextDecoration.None,
+    color = if (valid) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+)

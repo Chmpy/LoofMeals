@@ -25,10 +25,10 @@ import kotlinx.coroutines.launch
  * it updates the UI state with the fetched restaurants and sets the API call state to Success.
  * If the API call fails, it sets the API call state to Error.
  *
- * @property IRestaurantRepository The repository to fetch the restaurants from.
+ * @property restaurantRepository The repository to fetch the restaurants from.
  */
 class MapViewModel(
-    private val IRestaurantRepository: IRestaurantRepository
+    private val restaurantRepository: IRestaurantRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MapState())
@@ -55,7 +55,7 @@ class MapViewModel(
         viewModelScope.launch {
             mapApiState = MapApiState.Loading
             try {
-                IRestaurantRepository.getRestaurantList().collect { restaurants ->
+                restaurantRepository.getRestaurantList().collect { restaurants ->
                     Log.d("MapViewModel", "getRestaurants: ${restaurants.size}")
                     _uiState.update {
                         it.copy(
@@ -91,7 +91,7 @@ class MapViewModel(
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as LoofMealsApplication)
-                val restaurantRepository = application.container.IRestaurantRepository
+                val restaurantRepository = application.container.restaurantRepository
                 MapViewModel(restaurantRepository)
             }
         }

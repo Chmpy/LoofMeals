@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * This interface defines the properties that should be provided by the application container.
  */
 interface AppContainer {
-    val IRestaurantRepository: IRestaurantRepository
+    val restaurantRepository: IRestaurantRepository
 }
 
 /**
@@ -45,7 +45,7 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
      *
      * This instance is created lazily and uses the Retrofit service and the Restaurant database DAO.
      */
-    override val IRestaurantRepository: IRestaurantRepository by lazy {
+    override val restaurantRepository: IRestaurantRepository by lazy {
         CachingRestaurantRepository(
             retrofitService,
             RestaurantDb.getInstance(context).restaurantDao()

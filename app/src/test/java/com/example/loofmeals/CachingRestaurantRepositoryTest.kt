@@ -8,9 +8,7 @@ import com.example.loofmeals.data.database.asDomainObject
 import com.example.loofmeals.data.database.asRestaurantEntity
 import com.example.loofmeals.data.model.Restaurant
 import com.example.loofmeals.network.RestaurantApiService
-import com.example.loofmeals.network.getRestaurantsAsFlow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -19,15 +17,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoInteractions
 import org.mockito.Mockito.`when`
-import org.mockito.kotlin.whenever
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.doReturn
-import java.io.IOException
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)

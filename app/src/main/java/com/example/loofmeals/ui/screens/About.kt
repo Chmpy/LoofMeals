@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import com.example.loofmeals.R
 import com.example.loofmeals.ui.components.BackgroundSurface
@@ -165,7 +166,12 @@ fun ContactSection(email: String, icon: ImageVector) {
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.sm)))
         ClickableText(text = buildAnnotatedString {
-            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+            withStyle(
+                style = SpanStyle(
+                    color = MaterialTheme.colorScheme.primary,
+                    textDecoration = TextDecoration.Underline
+                )
+            ) {
                 append(email)
             }
         }, onClick = {

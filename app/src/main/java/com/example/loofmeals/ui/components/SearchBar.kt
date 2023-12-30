@@ -40,7 +40,7 @@ import com.example.loofmeals.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(filter: (String) -> Unit, modifier: Modifier = Modifier) {
-    // The search query. This is a mutable state that is remembered across recompositions.
+    // The search query. This is a mutable state remembered across recompositions.
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
     // The focus manager. This is used to clear the focus from the TextField.

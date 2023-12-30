@@ -164,7 +164,7 @@ class RestaurantViewModel(private val restaurantRepository: IRestaurantRepositor
             initializer {
                 val application =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as LoofMealsApplication)
-                val restaurantRepository = application.container.IRestaurantRepository
+                val restaurantRepository = application.container.restaurantRepository
                 RestaurantViewModel(restaurantRepository)
             }
         }
