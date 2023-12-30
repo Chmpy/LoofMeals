@@ -65,24 +65,24 @@
   <div class="breadcrumbs"><a href="../../../index.html">app</a><span class="delimiter">/</span><a href="../index.html">com.example.loofmeals.ui.restaurant</a><span class="delimiter">/</span><span class="current">RestaurantViewModel</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Restaurant</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">RestaurantViewModel</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">restaurantRepository<span class="token operator">: </span><a href="../../com.example.loofmeals.data/-restaurant-repository/index.html">RestaurantRepository</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModel.html">ViewModel</a></div><p class="paragraph">ViewModel for the RestaurantOverview screen.</p><p class="paragraph">This ViewModel fetches the restaurants from the repository and updates the UI state. If the API call is successful, it updates the UI state with the fetched restaurants and sets the API call state to Success. If the API call fails, it sets the API call state to Error.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">RestaurantViewModel</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">restaurantRepository<span class="token operator">: </span><a href="../../com.example.loofmeals.data/-i-restaurant-repository/index.html">IRestaurantRepository</a></span></span><span class="token punctuation">)</span> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModel.html">ViewModel</a></div><p class="paragraph">ViewModel for the RestaurantOverview screen.</p><p class="paragraph">This ViewModel fetches the restaurants from the repository and updates the UI state. If the API call is successful, it updates the UI state with the fetched restaurants and sets the API call state to Success. If the API call fails, it sets the API call state to Error.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
         <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="-1397671967%2FConstructors%2F492899073" anchor-label="RestaurantViewModel" id="-1397671967%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+        <div class="table"><a data-name="288398954%2FConstructors%2F492899073" anchor-label="RestaurantViewModel" id="288398954%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
           <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-restaurant-view-model.html"><span>Restaurant</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1397671967%2FConstructors%2F492899073"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="288398954%2FConstructors%2F492899073"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">restaurantRepository<span class="token operator">: </span><a href="../../com.example.loofmeals.data/-restaurant-repository/index.html">RestaurantRepository</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">restaurantRepository<span class="token operator">: </span><a href="../../com.example.loofmeals.data/-i-restaurant-repository/index.html">IRestaurantRepository</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -170,6 +170,21 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="filter-restaurants.html"><span class="token function">filterRestaurants</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">query<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Filter the restaurants by a search query.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="30763220%2FFunctions%2F492899073" anchor-label="getRestaurants" id="30763220%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-restaurants.html"><span>get</span><wbr></wbr><span><span>Restaurants</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="30763220%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-restaurants.html"><span class="token function">getRestaurants</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Fetch the restaurants from the repository.</p></div></div></div>
                 </div>
               </div>
             </div>

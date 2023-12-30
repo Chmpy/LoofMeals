@@ -148,7 +148,7 @@ $dokka.location:com.example.loofmeals.data.model/Restaurant/x/#/PointingToDeclar
 $dokka.location:com.example.loofmeals.data.model/Restaurant/y/#/PointingToDeclaration/app/com.example.loofmeals.data.model/-restaurant/y.html
 $dokka.location:com.example.loofmeals.data////PointingToDeclaration/app/com.example.loofmeals.data/index.html
 $dokka.location:com.example.loofmeals.data/AppContainer///PointingToDeclaration/app/com.example.loofmeals.data/-app-container/index.html
-$dokka.location:com.example.loofmeals.data/AppContainer/restaurantRepository/#/PointingToDeclaration/app/com.example.loofmeals.data/-app-container/restaurant-repository.html
+$dokka.location:com.example.loofmeals.data/AppContainer/IRestaurantRepository/#/PointingToDeclaration/app/com.example.loofmeals.data/-app-container/-i-restaurant-repository.html
 $dokka.location:com.example.loofmeals.data/CachingRestaurantRepository///PointingToDeclaration/app/com.example.loofmeals.data/-caching-restaurant-repository/index.html
 $dokka.location:com.example.loofmeals.data/CachingRestaurantRepository/CachingRestaurantRepository/#com.example.loofmeals.network.RestaurantApiService#com.example.loofmeals.data.database.RestaurantDao/PointingToDeclaration/app/com.example.loofmeals.data/-caching-restaurant-repository/-caching-restaurant-repository.html
 $dokka.location:com.example.loofmeals.data/CachingRestaurantRepository/getFavoriteRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.data/-caching-restaurant-repository/get-favorite-restaurants.html
@@ -160,15 +160,15 @@ $dokka.location:com.example.loofmeals.data/CachingRestaurantRepository/refreshRe
 $dokka.location:com.example.loofmeals.data/CachingRestaurantRepository/updateRestaurant/#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.data/-caching-restaurant-repository/update-restaurant.html
 $dokka.location:com.example.loofmeals.data/DefaultAppContainer///PointingToDeclaration/app/com.example.loofmeals.data/-default-app-container/index.html
 $dokka.location:com.example.loofmeals.data/DefaultAppContainer/DefaultAppContainer/#android.content.Context/PointingToDeclaration/app/com.example.loofmeals.data/-default-app-container/-default-app-container.html
-$dokka.location:com.example.loofmeals.data/DefaultAppContainer/restaurantRepository/#/PointingToDeclaration/app/com.example.loofmeals.data/-default-app-container/restaurant-repository.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository///PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/index.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/getFavoriteRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/get-favorite-restaurants.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/getFilteredRestaurants/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/get-filtered-restaurants.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/getRestaurantById/#kotlin.Int/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/get-restaurant-by-id.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/getRestaurantList/#/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/get-restaurant-list.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/insertRestaurant/#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/insert-restaurant.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/refreshRestaurantList/#/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/refresh-restaurant-list.html
-$dokka.location:com.example.loofmeals.data/RestaurantRepository/updateRestaurant/#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.data/-restaurant-repository/update-restaurant.html
+$dokka.location:com.example.loofmeals.data/DefaultAppContainer/IRestaurantRepository/#/PointingToDeclaration/app/com.example.loofmeals.data/-default-app-container/-i-restaurant-repository.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository///PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/index.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/getFavoriteRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/get-favorite-restaurants.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/getFilteredRestaurants/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/get-filtered-restaurants.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/getRestaurantById/#kotlin.Int/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/get-restaurant-by-id.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/getRestaurantList/#/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/get-restaurant-list.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/insertRestaurant/#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/insert-restaurant.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/refreshRestaurantList/#/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/refresh-restaurant-list.html
+$dokka.location:com.example.loofmeals.data/IRestaurantRepository/updateRestaurant/#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.data/-i-restaurant-repository/update-restaurant.html
 $dokka.location:com.example.loofmeals.network////PointingToDeclaration/app/com.example.loofmeals.network/index.html
 $dokka.location:com.example.loofmeals.network//asDomainObject/kotlin.collections.List[com.example.loofmeals.network.ApiRestaurant]#/PointingToDeclaration/app/com.example.loofmeals.network/as-domain-object.html
 $dokka.location:com.example.loofmeals.network//getRestaurantsAsFlow/com.example.loofmeals.network.RestaurantApiService#/PointingToDeclaration/app/com.example.loofmeals.network/get-restaurants-as-flow.html
@@ -235,8 +235,13 @@ $dokka.location:com.example.loofmeals.network/ApiRestaurant/y/#/PointingToDeclar
 $dokka.location:com.example.loofmeals.network/RestaurantApiService///PointingToDeclaration/app/com.example.loofmeals.network/-restaurant-api-service/index.html
 $dokka.location:com.example.loofmeals.network/RestaurantApiService/getRestaurantList/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.network/-restaurant-api-service/get-restaurant-list.html
 $dokka.location:com.example.loofmeals.ui.components////PointingToDeclaration/app/com.example.loofmeals.ui.components/index.html
-$dokka.location:com.example.loofmeals.ui.components//BackgroundSurface/#androidx.compose.ui.Modifier#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.components/-background-surface.html
+$dokka.location:com.example.loofmeals.ui.components//BackgroundSurface/#androidx.compose.ui.Modifier#androidx.compose.ui.graphics.Shape?#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.components/-background-surface.html
+$dokka.location:com.example.loofmeals.ui.components//NavigationDrawerExpanded/#com.example.loofmeals.ui.util.NavigationType#kotlin.collections.List[com.example.loofmeals.data.general.NavigationItem]#kotlinx.coroutines.CoroutineScope#androidx.navigation.NavHostController#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.components/-navigation-drawer-expanded.html
+$dokka.location:com.example.loofmeals.ui.components//NavigationDrawerSmall/#com.example.loofmeals.ui.util.NavigationType#kotlin.collections.List[com.example.loofmeals.data.general.NavigationItem]#androidx.compose.material3.DrawerState#kotlinx.coroutines.CoroutineScope#androidx.navigation.NavHostController#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.components/-navigation-drawer-small.html
+$dokka.location:com.example.loofmeals.ui.components//NavigationRailMedium/#com.example.loofmeals.ui.util.NavigationType#kotlin.collections.List[com.example.loofmeals.data.general.NavigationItem]#kotlinx.coroutines.CoroutineScope#androidx.navigation.NavHostController#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.components/-navigation-rail-medium.html
+$dokka.location:com.example.loofmeals.ui.components//RestaurantCard/#androidx.compose.ui.Modifier#com.example.loofmeals.data.model.Restaurant#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.components/-restaurant-card.html
 $dokka.location:com.example.loofmeals.ui.components//SearchBar/#kotlin.Function1[kotlin.String,kotlin.Unit]#androidx.compose.ui.Modifier/PointingToDeclaration/app/com.example.loofmeals.ui.components/-search-bar.html
+$dokka.location:com.example.loofmeals.ui.components//navigationItems/#/PointingToDeclaration/app/com.example.loofmeals.ui.components/navigation-items.html
 $dokka.location:com.example.loofmeals.ui.favorite////PointingToDeclaration/app/com.example.loofmeals.ui.favorite/index.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteApiState.Error///PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-api-state/-error/index.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteApiState.Loading///PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-api-state/-loading/index.html
@@ -248,12 +253,13 @@ $dokka.location:com.example.loofmeals.ui.favorite/FavoriteState/restaurants/#/Po
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel.Companion///PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/-companion/index.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel.Companion/Factory/#/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/-companion/-factory.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel///PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/index.html
-$dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel/FavoriteViewModel/#com.example.loofmeals.data.RestaurantRepository/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/-favorite-view-model.html
+$dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel/FavoriteViewModel/#com.example.loofmeals.data.IRestaurantRepository/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/-favorite-view-model.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel/favoriteApiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/favorite-api-state.html
+$dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel/getFavoriteRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/get-favorite-restaurants.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel/uiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/ui-state.html
 $dokka.location:com.example.loofmeals.ui.favorite/FavoriteViewModel/updateFavorite/#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.ui.favorite/-favorite-view-model/update-favorite.html
 $dokka.location:com.example.loofmeals.ui.layout////PointingToDeclaration/app/com.example.loofmeals.ui.layout/index.html
-$dokka.location:com.example.loofmeals.ui.layout//RootLayout/#androidx.compose.material3.DrawerState#kotlinx.coroutines.CoroutineScope#androidx.navigation.NavHostController/PointingToDeclaration/app/com.example.loofmeals.ui.layout/-root-layout.html
+$dokka.location:com.example.loofmeals.ui.layout//RootLayout/#com.example.loofmeals.ui.util.NavigationType#androidx.compose.material3.DrawerState#kotlinx.coroutines.CoroutineScope#androidx.navigation.NavHostController/PointingToDeclaration/app/com.example.loofmeals.ui.layout/-root-layout.html
 $dokka.location:com.example.loofmeals.ui.layout//TopLoofBar/#kotlin.Int#kotlinx.coroutines.CoroutineScope#androidx.compose.material3.DrawerState/PointingToDeclaration/app/com.example.loofmeals.ui.layout/-top-loof-bar.html
 $dokka.location:com.example.loofmeals.ui.map////PointingToDeclaration/app/com.example.loofmeals.ui.map/index.html
 $dokka.location:com.example.loofmeals.ui.map/MapApiState.Error///PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-api-state/-error/index.html
@@ -266,7 +272,8 @@ $dokka.location:com.example.loofmeals.ui.map/MapState/markers/#/PointingToDeclar
 $dokka.location:com.example.loofmeals.ui.map/MapViewModel.Companion///PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/-companion/index.html
 $dokka.location:com.example.loofmeals.ui.map/MapViewModel.Companion/Factory/#/PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/-companion/-factory.html
 $dokka.location:com.example.loofmeals.ui.map/MapViewModel///PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/index.html
-$dokka.location:com.example.loofmeals.ui.map/MapViewModel/MapViewModel/#com.example.loofmeals.data.RestaurantRepository/PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/-map-view-model.html
+$dokka.location:com.example.loofmeals.ui.map/MapViewModel/MapViewModel/#com.example.loofmeals.data.IRestaurantRepository/PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/-map-view-model.html
+$dokka.location:com.example.loofmeals.ui.map/MapViewModel/getRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/get-restaurants.html
 $dokka.location:com.example.loofmeals.ui.map/MapViewModel/mapApiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/map-api-state.html
 $dokka.location:com.example.loofmeals.ui.map/MapViewModel/uiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.map/-map-view-model/ui-state.html
 $dokka.location:com.example.loofmeals.ui.map/RestaurantMarker///PointingToDeclaration/app/com.example.loofmeals.ui.map/-restaurant-marker/index.html
@@ -276,7 +283,6 @@ $dokka.location:com.example.loofmeals.ui.map/RestaurantMarker/lat/#/PointingToDe
 $dokka.location:com.example.loofmeals.ui.map/RestaurantMarker/long/#/PointingToDeclaration/app/com.example.loofmeals.ui.map/-restaurant-marker/long.html
 $dokka.location:com.example.loofmeals.ui.map/RestaurantMarker/title/#/PointingToDeclaration/app/com.example.loofmeals.ui.map/-restaurant-marker/title.html
 $dokka.location:com.example.loofmeals.ui.restaurant////PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/index.html
-$dokka.location:com.example.loofmeals.ui.restaurant//RestaurantCard/#androidx.compose.ui.Modifier#com.example.loofmeals.data.model.Restaurant#kotlin.Function0[kotlin.Unit]#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-card.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantApiState.Error///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-api-state/-error/index.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantApiState.Loading///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-api-state/-loading/index.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantApiState.NetworkError///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-api-state/-network-error/index.html
@@ -292,7 +298,8 @@ $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailState/restau
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel.Companion///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/-companion/index.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel.Companion/Factory/#kotlin.Int/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/-companion/-factory.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/index.html
-$dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel/RestaurantDetailViewModel/#com.example.loofmeals.data.RestaurantRepository#kotlin.Int/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/-restaurant-detail-view-model.html
+$dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel/RestaurantDetailViewModel/#com.example.loofmeals.data.IRestaurantRepository#kotlin.Int/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/-restaurant-detail-view-model.html
+$dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel/getRestaurantDetail/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/get-restaurant-detail.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel/restaurantDetailApiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/restaurant-detail-api-state.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantDetailViewModel/uiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-detail-view-model/ui-state.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantOverviewState///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-overview-state/index.html
@@ -301,8 +308,9 @@ $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantOverviewState/rest
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel.Companion///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/-companion/index.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel.Companion/Factory/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/-companion/-factory.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel///PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/index.html
-$dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/RestaurantViewModel/#com.example.loofmeals.data.RestaurantRepository/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/-restaurant-view-model.html
+$dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/RestaurantViewModel/#com.example.loofmeals.data.IRestaurantRepository/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/-restaurant-view-model.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/filterRestaurants/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/filter-restaurants.html
+$dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/getRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/get-restaurants.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/refreshRestaurants/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/refresh-restaurants.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/restaurantApiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/restaurant-api-state.html
 $dokka.location:com.example.loofmeals.ui.restaurant/RestaurantViewModel/uiState/#/PointingToDeclaration/app/com.example.loofmeals.ui.restaurant/-restaurant-view-model/ui-state.html
@@ -323,20 +331,6 @@ $dokka.location:com.example.loofmeals.ui.screens//RestaurantDetailBody/#androidx
 $dokka.location:com.example.loofmeals.ui.screens//RestaurantDetailFooter/#androidx.compose.ui.Modifier#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-restaurant-detail-footer.html
 $dokka.location:com.example.loofmeals.ui.screens//RestaurantDetailHeader/#androidx.compose.ui.Modifier#com.example.loofmeals.data.model.Restaurant/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-restaurant-detail-header.html
 $dokka.location:com.example.loofmeals.ui.screens//RestaurantList/#androidx.compose.ui.Modifier#com.example.loofmeals.ui.restaurant.RestaurantOverviewState#androidx.navigation.NavController#com.example.loofmeals.ui.restaurant.RestaurantViewModel/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-restaurant-list.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.About///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.screens/-screens/-about/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.Companion///PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/-companion/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.Companion/getScreenByRoute/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/-companion/get-screen-by-route.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.Detail///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.screens/-screens/-detail/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.Favorites///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.screens/-screens/-favorites/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.Map///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.screens/-screens/-map/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens.Overview///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.screens/-screens/-overview/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens///PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/index.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens/entries/#/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/entries.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens/id/#/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/id.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens/route/#/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/route.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens/title/#/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/title.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens/valueOf/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/value-of.html
-$dokka.location:com.example.loofmeals.ui.screens/Screens/values/#/PointingToDeclaration/app/com.example.loofmeals.ui.screens/-screens/values.html
 $dokka.location:com.example.loofmeals.ui.theme////PointingToDeclaration/app/com.example.loofmeals.ui.theme/index.html
 $dokka.location:com.example.loofmeals.ui.theme//LoofTheme/#kotlin.Boolean#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/app/com.example.loofmeals.ui.theme/-loof-theme.html
 $dokka.location:com.example.loofmeals.ui.theme//NovaRound/#/PointingToDeclaration/app/com.example.loofmeals.ui.theme/-nova-round.html
@@ -401,8 +395,30 @@ $dokka.location:com.example.loofmeals.ui.theme//md_theme_light_surfaceVariant/#/
 $dokka.location:com.example.loofmeals.ui.theme//md_theme_light_tertiary/#/PointingToDeclaration/app/com.example.loofmeals.ui.theme/md_theme_light_tertiary.html
 $dokka.location:com.example.loofmeals.ui.theme//md_theme_light_tertiaryContainer/#/PointingToDeclaration/app/com.example.loofmeals.ui.theme/md_theme_light_tertiary-container.html
 $dokka.location:com.example.loofmeals.ui.theme//seed/#/PointingToDeclaration/app/com.example.loofmeals.ui.theme/seed.html
+$dokka.location:com.example.loofmeals.ui.util////PointingToDeclaration/app/com.example.loofmeals.ui.util/index.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType.NAVIGATION_RAIL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-navigation-type/-n-a-v-i-g-a-t-i-o-n_-r-a-i-l/index.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType.PERMANENT_NAVIGATION_DRAWER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-navigation-type/-p-e-r-m-a-n-e-n-t_-n-a-v-i-g-a-t-i-o-n_-d-r-a-w-e-r/index.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType.VAR_NAVIGATION_DRAWER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-navigation-type/-v-a-r_-n-a-v-i-g-a-t-i-o-n_-d-r-a-w-e-r/index.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType///PointingToDeclaration/app/com.example.loofmeals.ui.util/-navigation-type/index.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType/entries/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-navigation-type/entries.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType/valueOf/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.ui.util/-navigation-type/value-of.html
+$dokka.location:com.example.loofmeals.ui.util/NavigationType/values/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-navigation-type/values.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.About///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-screens/-about/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.Companion///PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/-companion/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.Companion/getScreenByRoute/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/-companion/get-screen-by-route.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.Detail///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-screens/-detail/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.Favorites///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-screens/-favorites/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.Map///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-screens/-map/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens.Overview///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}app/com.example.loofmeals.ui.util/-screens/-overview/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens///PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/index.html
+$dokka.location:com.example.loofmeals.ui.util/Screens/entries/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/entries.html
+$dokka.location:com.example.loofmeals.ui.util/Screens/id/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/id.html
+$dokka.location:com.example.loofmeals.ui.util/Screens/route/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/route.html
+$dokka.location:com.example.loofmeals.ui.util/Screens/title/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/title.html
+$dokka.location:com.example.loofmeals.ui.util/Screens/valueOf/#kotlin.String/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/value-of.html
+$dokka.location:com.example.loofmeals.ui.util/Screens/values/#/PointingToDeclaration/app/com.example.loofmeals.ui.util/-screens/values.html
 $dokka.location:com.example.loofmeals.ui////PointingToDeclaration/app/com.example.loofmeals.ui/index.html
-$dokka.location:com.example.loofmeals.ui//LoofMealsApp/#androidx.navigation.NavHostController/PointingToDeclaration/app/com.example.loofmeals.ui/-loof-meals-app.html
+$dokka.location:com.example.loofmeals.ui//LoofMealsApp/#androidx.compose.material3.windowsizeclass.WindowWidthSizeClass#androidx.navigation.NavHostController/PointingToDeclaration/app/com.example.loofmeals.ui/-loof-meals-app.html
 $dokka.location:com.example.loofmeals.util////PointingToDeclaration/app/com.example.loofmeals.util/index.html
 $dokka.location:com.example.loofmeals.util/Constants///PointingToDeclaration/app/com.example.loofmeals.util/-constants/index.html
 $dokka.location:com.example.loofmeals.util/Constants/BASE_URL/#/PointingToDeclaration/app/com.example.loofmeals.util/-constants/-b-a-s-e_-u-r-l.html
@@ -433,5 +449,6 @@ com.example.loofmeals.ui.map
 com.example.loofmeals.ui.restaurant
 com.example.loofmeals.ui.screens
 com.example.loofmeals.ui.theme
+com.example.loofmeals.ui.util
 com.example.loofmeals.util
 
