@@ -32,7 +32,6 @@ class FavoriteViewModel(private val restaurantRepository: IRestaurantRepository)
     // The state of the API call to fetch the favorite restaurants.
     // This is a mutable state that is updated every time the API call state changes.
     var favoriteApiState: FavoriteApiState by mutableStateOf(FavoriteApiState.Loading)
-        private set
 
     // Fetch the favorite restaurants when the ViewModel is initialized.
     init {

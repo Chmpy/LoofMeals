@@ -43,7 +43,6 @@ class RestaurantDetailViewModel(
     var restaurantDetailApiState: RestaurantDetailApiState by mutableStateOf(
         RestaurantDetailApiState.Loading
     )
-        private set
 
     // Fetch the restaurant details when the ViewModel is initialized.
     init {

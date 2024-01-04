@@ -38,7 +38,6 @@ class RestaurantViewModel(private val restaurantRepository: IRestaurantRepositor
     // The state of the API call to fetch the restaurants.
     // This is a mutable state that is updated every time the API call state changes.
     var restaurantApiState: RestaurantApiState by mutableStateOf(RestaurantApiState.Loading)
-        private set
 
     // The current search query. This is updated every time the user enters a new search query.
     private var currentQuery: String = ""
@@ -58,7 +57,7 @@ class RestaurantViewModel(private val restaurantRepository: IRestaurantRepositor
      */
     fun getRestaurants() {
         viewModelScope.launch {
-            restaurantApiState= RestaurantApiState.Loading
+            restaurantApiState = RestaurantApiState.Loading
             try {
                 //Simulate network delay
                 kotlinx.coroutines.delay(2000)
